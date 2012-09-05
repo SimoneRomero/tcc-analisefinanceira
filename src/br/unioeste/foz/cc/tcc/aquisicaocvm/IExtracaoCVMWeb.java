@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
 
-import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
+import br.unioeste.foz.cc.tcc.empresa.Empresa;
+import br.unioeste.foz.cc.tcc.prototipos.HashBackMap;
 
-import unioeste.tcc.empresa.Empresa;
-import unioeste.tcc.prototipos.HashBackMap;
+import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 
 public interface IExtracaoCVMWeb {
 

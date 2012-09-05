@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import unioeste.tcc.demonstracao.Atributo;
-import unioeste.tcc.demonstracao.AtributoValor;
-import unioeste.tcc.demonstracao.RelatorioAnual;
-import unioeste.tcc.empresa.Empresa;
-import unioeste.tcc.empresa.Registro;
-import unioeste.tcc.empresa.Setor;
-import unioeste.tcc.prototipos.Formatador;
-import unioeste.tcc.prototipos.HashBackMap;
+import br.unioeste.foz.cc.tcc.demonstracao.Atributo;
+import br.unioeste.foz.cc.tcc.demonstracao.AtributoValor;
+import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
+import br.unioeste.foz.cc.tcc.empresa.Empresa;
+import br.unioeste.foz.cc.tcc.empresa.Registro;
+import br.unioeste.foz.cc.tcc.empresa.Setor;
+import br.unioeste.foz.cc.tcc.prototipos.Formatador;
+import br.unioeste.foz.cc.tcc.prototipos.HashBackMap;
 
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
