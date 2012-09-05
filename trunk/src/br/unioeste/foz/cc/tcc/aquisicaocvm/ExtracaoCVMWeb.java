@@ -6,10 +6,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import unioeste.tcc.demonstracao.RelatorioAnual;
-import unioeste.tcc.empresa.Empresa;
-import unioeste.tcc.prototipos.HashBackMap;
-import unioeste.tcc.webextraction.clienteweb.ClienteWeb;
+import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
+import br.unioeste.foz.cc.tcc.empresa.Empresa;
+import br.unioeste.foz.cc.tcc.prototipos.HashBackMap;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
