@@ -1,0 +1,15 @@
+09-11 10:47:43 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT TOP ?  FROM "; expected "identifier"; SQL statement:
+select top ?  from [42001-169]
+09-11 10:48:05 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT TOP ?  FROM "; expected "identifier"; SQL statement:
+select top ?  from [42001-169]
+09-11 10:49:34 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT  FROM LIMIT[*] ? "; expected "identifier"; SQL statement:
+select  from limit ? [42001-169]
+09-11 11:18:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+09-11 11:19:05 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+09-11 11:19:21 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
