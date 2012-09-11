@@ -1,9 +1,0 @@
-09-11 10:40:02 jdbc[2]: exception
-org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT TOP ?  FROM "; expected "identifier"; SQL statement:
-select top ?  from [42001-169]
-09-11 10:50:13 jdbc[2]: exception
-org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT  FROM LIMIT[*] ? "; expected "identifier"; SQL statement:
-select  from limit ? [42001-169]
-09-11 11:02:32 jdbc[2]: exception
-org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT  FROM LIMIT[*] ? "; expected "identifier"; SQL statement:
-select  from limit ? [42001-169]
