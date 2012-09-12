@@ -237,3 +237,225 @@ drop table atributo [42102-169]
 09-12 10:26:15 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
 drop table atributo [42102-169]
+09-12 13:20:36 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE EMPRESA RENAME SETOR[*] TO DESCRICAOATIVIDADE "; expected "TO"; SQL statement:
+alter table empresa rename setor to descricaoatividade [42001-169]
+09-12 13:21:18 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE EMPRESA RENAME 'setor'[*] TO 'descricaoatividade' "; expected "TO"; SQL statement:
+alter table empresa rename 'setor' to 'descricaoatividade' [42001-169]
+09-12 13:22:36 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE EMPRESA CHANGE[*] SETOR DESCRICAOATIVIDADE VARCHAR(500) "; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+alter table empresa change setor descricaoatividade varchar(500) [42001-169]
+09-12 13:23:08 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE EMPRESA RENAME ""setor""[*] TO ""descricaoatividade"" "; expected "TO"; SQL statement:
+alter table empresa rename "setor" to "descricaoatividade" [42001-169]
+09-12 13:24:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "alter table empresa rename column setor to descricaoatividade[*]"";"; SQL statement:
+alter table empresa rename column setor to descricaoatividade"; [42000-169]
+09-12 13:24:43 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE EMPRESA RENAME COLUMN[*] SETOR TO DESCRICAOATIVIDADE "; expected "TO"; SQL statement:
+alter table empresa rename column setor to descricaoatividade [42001-169]
+09-12 13:27:26 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE EMPRESA CHANGE[*] SETOR DESCRICAOATIVIDADE VARCHAR(500) "; expected "., ADD, SET, RENAME, DROP, ALTER"; SQL statement:
+alter table empresa change setor descricaoatividade varchar(500) [42001-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:28:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "ATRIBUTO" not found; SQL statement:
+drop table atributo [42102-169]
+09-12 13:29:53 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "IDCATEGORIAREGCVM" not found; SQL statement:
+drop table idcategoriaregcvm [42102-169]
+09-12 13:29:53 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "IDEMPRESA" not found; SQL statement:
+drop table idempresa [42102-169]
+09-12 13:29:53 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "IDPAIS" not found; SQL statement:
+drop table idpais [42102-169]
+09-12 13:29:53 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "IDRELATORIOANUAL" not found; SQL statement:
+drop table idrelatorioanual [42102-169]
+09-12 13:29:53 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "IDSITUACAOEMISSOR" not found; SQL statement:
+drop table idsituacaoemissor [42102-169]
+09-12 13:29:53 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "IDSITUACAOREGCVM" not found; SQL statement:
+drop table idsituacaoregcvm [42102-169]
+09-12 13:29:53 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "IDTIPOPARTICIPANTE" not found; SQL statement:
+drop table idtipoparticipante [42102-169]
+09-12 13:30:28 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "IDCATEGORIAREGCVM" not found; SQL statement:
+drop sequence idcategoriaregcvm [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+09-12 13:30:28 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "IDEMPRESA" not found; SQL statement:
+drop sequence idempresa [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+09-12 13:30:28 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "IDPAIS" not found; SQL statement:
+drop sequence idpais [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+09-12 13:30:28 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "IDRELATORIOANUAL" not found; SQL statement:
+drop sequence idrelatorioanual [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+09-12 13:30:28 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "IDSITUACAOEMISSOR" not found; SQL statement:
+drop sequence idsituacaoemissor [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+09-12 13:30:29 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "IDSITUACAOREGCVM" not found; SQL statement:
+drop sequence idsituacaoregcvm [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+09-12 13:30:29 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Sequence "IDTIPOPARTICIPANTE" not found; SQL statement:
+drop sequence idtipoparticipante [90036-169]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:329)
+	at org.h2.message.DbException.get(DbException.java:169)
+	at org.h2.message.DbException.get(DbException.java:146)
+	at org.h2.command.ddl.DropSequence.update(DropSequence.java:45)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:75)
+	at org.h2.command.Command.executeUpdate(Command.java:230)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:177)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:152)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1311)
+	at org.h2.server.web.WebApp.query(WebApp.java:1001)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:964)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:953)
+	at org.h2.server.web.WebThread.process(WebThread.java:166)
+	at org.h2.server.web.WebThread.run(WebThread.java:93)
+	at java.lang.Thread.run(Unknown Source)
+09-12 14:37:08 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+09-12 14:37:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+09-12 14:43:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]

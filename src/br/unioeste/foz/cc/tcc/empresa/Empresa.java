@@ -7,6 +7,7 @@ import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
 
 public class Empresa {
 
+	private int id;
 	private String nome;
 	private String cnpj;
 	private String site;
@@ -136,6 +137,20 @@ public class Empresa {
 
 	public void setRelatorios(List<RelatorioAnual> relatorios) {
 		this.relatorios = relatorios;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
 
 }

@@ -2,6 +2,7 @@ package br.unioeste.foz.cc.tcc.empresa;
 
 public class CategoriaRegCVM {
 
+	private int id;
 	private String categoria;
 
 	public CategoriaRegCVM(String categoria) {
@@ -15,6 +16,20 @@ public class CategoriaRegCVM {
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
 
 }

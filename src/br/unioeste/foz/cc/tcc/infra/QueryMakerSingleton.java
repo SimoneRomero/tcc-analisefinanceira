@@ -123,9 +123,7 @@ public class QueryMakerSingleton {
 		}
 
 		ps.execute();
-		ResultSet rs = ps.getGeneratedKeys();
-		rs.next();
-		return rs.getInt(1);
+		return (Integer) values[0];
 	}
 
 	public Integer updateWhere(String table, String[] columns, String condition,
