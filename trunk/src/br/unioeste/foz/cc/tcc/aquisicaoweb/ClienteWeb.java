@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.aquisicaocvm;
+package br.unioeste.foz.cc.tcc.aquisicaoweb;
 
 import java.io.IOException;
 import java.io.Serializable;

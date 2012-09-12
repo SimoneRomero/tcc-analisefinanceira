@@ -8,11 +8,14 @@ import java.util.List;
 import br.unioeste.foz.cc.tcc.demonstracao.Atributo;
 import br.unioeste.foz.cc.tcc.demonstracao.AtributoValor;
 import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
+import br.unioeste.foz.cc.tcc.empresa.CategoriaRegCVM;
 import br.unioeste.foz.cc.tcc.empresa.Empresa;
+import br.unioeste.foz.cc.tcc.empresa.Pais;
 import br.unioeste.foz.cc.tcc.empresa.Registro;
 import br.unioeste.foz.cc.tcc.empresa.Setor;
-import br.unioeste.foz.cc.tcc.prototipos.Formatador;
-import br.unioeste.foz.cc.tcc.prototipos.HashBackMap;
+import br.unioeste.foz.cc.tcc.empresa.SituacaoEmissor;
+import br.unioeste.foz.cc.tcc.empresa.SituacaoRegCVM;
+import br.unioeste.foz.cc.tcc.empresa.TipoParticipante;
 
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -35,29 +38,25 @@ public class ParserCVMWeb {
 		HtmlTable htSetor = hp
 				.getHtmlElementById("ctl00_cphPopUp_tabelaDadosSetor");
 
-		Empresa empresa = new Empresa(Formatador.string2codCvm(ht.getRows()
-				.get(3).getCells().get(1).asText()), ht.getRows().get(0)
-				.getCells().get(1).asText(), ht.getRows().get(2).getCells()
-				.get(3).asText(), new Setor(htSetor.getRows().get(0).getCells()
-				.get(1).asText(), htSetor.getRows().get(1).getCells().get(1)
-				.asText()), new Registro(htRegistro.getRows().get(0).getCells()
-				.get(1).asText(), htRegistro.getRows().get(1).getCells().get(1)
-				.asText(), Formatador.string2date(htRegistro.getRows().get(1)
-				.getCells().get(3).asText()), htRegistro.getRows().get(2)
-				.getCells().get(1).asText(), Formatador.string2date(htRegistro
-				.getRows().get(2).getCells().get(3).asText()), htRegistro
-				.getRows().get(3).getCells().get(1).asText(),
-				Formatador.string2date(htRegistro.getRows().get(4).getCells()
-						.get(1).asText())), ht.getRows().get(6).getCells()
-				.get(1).asText(), Formatador.string2date(ht.getRows().get(1)
-				.getCells().get(1).asText()), ht.getRows().get(1).getCells()
-				.get(3).asText(), Formatador.string2date(ht.getRows().get(2)
-				.getCells().get(1).asText()), Formatador.string2date(ht
-				.getRows().get(3).getCells().get(3).asText()), ht.getRows()
-				.get(4).getCells().get(1).asText(), Formatador.string2date(ht
-				.getRows().get(4).getCells().get(3).asText()), ht.getRows()
-				.get(5).getCells().get(1).asText(), ht.getRows().get(5)
-				.getCells().get(3).asText());
+		Empresa empresa = new Empresa(ht.getRows().get(0).getCells().get(1).asText(),
+				ht.getRows().get(2).getCells().get(3).asText(),
+				ht.getRows().get(6).getCells().get(1).asText(),
+				Formatador.string2codCvm(ht.getRows().get(3).getCells().get(1).asText()),
+				new Setor(htSetor.getRows().get(0).getCells().get(1).asText(),
+						htSetor.getRows().get(1).getCells().get(1).asText()),
+				new Registro(Formatador.string2date(htRegistro.getRows().get(1).getCells().get(3).asText()),
+						Formatador.string2date(htRegistro.getRows().get(2).getCells().get(3).asText()),
+						Formatador.string2date(ht.getRows().get(3).getCells().get(3).asText()),
+						new TipoParticipante(htRegistro.getRows().get(0).getCells().get(1).asText()),
+						new CategoriaRegCVM(htRegistro.getRows().get(1).getCells().get(1).asText()),
+						new SituacaoEmissor(htRegistro.getRows().get(2).getCells().get(1).asText()),
+						new SituacaoRegCVM(ht.getRows().get(4).getCells().get(1).asText())),
+				ht.getRows().get(1).getCells().get(3).asText(),
+				Formatador.string2date(ht.getRows().get(1).getCells().get(1).asText()),
+				Formatador.string2date(ht.getRows().get(2).getCells().get(1).asText()),
+				Formatador.string2date(ht.getRows().get(4).getCells().get(3).asText()),
+				new Pais(ht.getRows().get(5).getCells().get(1).asText())
+				);
 
 		return empresa;
 	}

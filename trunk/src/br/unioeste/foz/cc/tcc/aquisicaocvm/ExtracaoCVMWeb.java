@@ -6,9 +6,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.unioeste.foz.cc.tcc.aquisicaoweb.ClienteWeb;
+import br.unioeste.foz.cc.tcc.aquisicaoweb.IObterEmpresaWeb;
 import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
 import br.unioeste.foz.cc.tcc.empresa.Empresa;
-import br.unioeste.foz.cc.tcc.prototipos.HashBackMap;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -20,7 +21,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
  *         Classe para extração de dados a partir de um cliente web.
  *
  */
-public class ExtracaoCVMWeb implements IExtracaoCVMWeb {
+public class ExtracaoCVMWeb implements IObterEmpresaWeb {
 
 	private final static String urlEmpresaListadaCVM = "http://www.bmfbovespa.com.br/cias-listadas/empresas-listadas/"
 			+ "ResumoDemonstrativosFinanceiros.aspx?codigoCvm=";
@@ -91,16 +92,4 @@ public class ExtracaoCVMWeb implements IExtracaoCVMWeb {
 		}
 		return empresas;
 	}
-
-	public static void main(String args[])
-			throws FailingHttpStatusCodeException, MalformedURLException,
-			IOException, ParseException {
-		ExtracaoCVMWeb ex = new ExtracaoCVMWeb(new ClienteWeb(),
-				new ParserCVMWeb());
-		Empresa e = ex.obterEmpresa(9512);
-		// HashBackMap<Integer, Empresa> a = ex.obterEmpresasListadas();
-
-		System.out.println(e);
-	}
-
 }
