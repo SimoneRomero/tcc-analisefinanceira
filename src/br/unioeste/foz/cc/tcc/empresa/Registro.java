@@ -4,42 +4,26 @@ import java.util.Date;
 
 public class Registro {
 
-	private String tipoParticipante;
-	private String categoriaRegCVM;
 	private Date dataRegCategoria;
-	private String situacaoEmissor;
 	private Date dataInicioSituacao;
-	private String especieConAcionario;
-	private Date dataAlteracaoExercicio;
+	private Date dataRegCVM;
+	private TipoParticipante tipo;
+	private CategoriaRegCVM categoriaCVM;
+	private SituacaoEmissor situacaoEmissor;
+	private SituacaoRegCVM situacaoRegCVM;
 
-	public Registro(String tipoParticipante, String categoriaRegCVM,
-			Date dataRegCategoria, String situacaoEmissor,
-			Date dataInicioSituacao, String especieConAcionario,
-			Date dataAlteracaoExercicio) {
+	public Registro(Date dataRegCategoria, Date dataInicioSituacao,
+			Date dataRegCVM,
+			TipoParticipante tipo, CategoriaRegCVM categoriaCVM,
+			SituacaoEmissor situacaoEmissor, SituacaoRegCVM situacaoRegCVM) {
 		super();
-		this.tipoParticipante = tipoParticipante;
-		this.categoriaRegCVM = categoriaRegCVM;
 		this.dataRegCategoria = dataRegCategoria;
-		this.situacaoEmissor = situacaoEmissor;
 		this.dataInicioSituacao = dataInicioSituacao;
-		this.especieConAcionario = especieConAcionario;
-		this.dataAlteracaoExercicio = dataAlteracaoExercicio;
-	}
-
-	public String getTipoParticipante() {
-		return tipoParticipante;
-	}
-
-	public void setTipoParticipante(String tipoParticipante) {
-		this.tipoParticipante = tipoParticipante;
-	}
-
-	public String getCategoriaRegCVM() {
-		return categoriaRegCVM;
-	}
-
-	public void setCategoriaRegCVM(String categoriaRegCVM) {
-		this.categoriaRegCVM = categoriaRegCVM;
+		this.dataRegCVM = dataRegCVM;
+		this.tipo = tipo;
+		this.categoriaCVM = categoriaCVM;
+		this.situacaoEmissor = situacaoEmissor;
+		this.situacaoRegCVM = situacaoRegCVM;
 	}
 
 	public Date getDataRegCategoria() {
@@ -50,14 +34,6 @@ public class Registro {
 		this.dataRegCategoria = dataRegCategoria;
 	}
 
-	public String getSituacaoEmissor() {
-		return situacaoEmissor;
-	}
-
-	public void setSituacaoEmissor(String situacaoEmissor) {
-		this.situacaoEmissor = situacaoEmissor;
-	}
-
 	public Date getDataInicioSituacao() {
 		return dataInicioSituacao;
 	}
@@ -66,20 +42,44 @@ public class Registro {
 		this.dataInicioSituacao = dataInicioSituacao;
 	}
 
-	public String getEspecieConAcionario() {
-		return especieConAcionario;
+	public Date getDataRegCVM() {
+		return dataRegCVM;
 	}
 
-	public void setEspecieConAcionario(String especieConAcionario) {
-		this.especieConAcionario = especieConAcionario;
+	public void setDataRegCVM(Date dataRegCVM) {
+		this.dataRegCVM = dataRegCVM;
 	}
 
-	public Date getDataAlteracaoExercicio() {
-		return dataAlteracaoExercicio;
+	public TipoParticipante getTipo() {
+		return tipo;
 	}
 
-	public void setDataAlteracaoExercicio(Date dataAlteracaoExercicio) {
-		this.dataAlteracaoExercicio = dataAlteracaoExercicio;
+	public void setTipo(TipoParticipante tipo) {
+		this.tipo = tipo;
+	}
+
+	public CategoriaRegCVM getCategoriaCVM() {
+		return categoriaCVM;
+	}
+
+	public void setCategoriaCVM(CategoriaRegCVM categoriaCVM) {
+		this.categoriaCVM = categoriaCVM;
+	}
+
+	public SituacaoEmissor getSituacaoEmissor() {
+		return situacaoEmissor;
+	}
+
+	public void setSituacaoEmissor(SituacaoEmissor situacaoEmissor) {
+		this.situacaoEmissor = situacaoEmissor;
+	}
+
+	public SituacaoRegCVM getSituacaoRegCVM() {
+		return situacaoRegCVM;
+	}
+
+	public void setSituacaoRegCVM(SituacaoRegCVM situacaoRegCVM) {
+		this.situacaoRegCVM = situacaoRegCVM;
 	}
 
 }

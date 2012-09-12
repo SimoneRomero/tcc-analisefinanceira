@@ -1,15 +1,15 @@
-package br.unioeste.foz.cc.tcc.aquisicaocvm;
+package br.unioeste.foz.cc.tcc.aquisicaoweb;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
 
+import br.unioeste.foz.cc.tcc.aquisicaocvm.HashBackMap;
 import br.unioeste.foz.cc.tcc.empresa.Empresa;
-import br.unioeste.foz.cc.tcc.prototipos.HashBackMap;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 
-public interface IExtracaoCVMWeb {
+public interface IObterEmpresaWeb {
 
 	public Empresa obterEmpresa(int codCVM)
 			throws FailingHttpStatusCodeException, MalformedURLException,

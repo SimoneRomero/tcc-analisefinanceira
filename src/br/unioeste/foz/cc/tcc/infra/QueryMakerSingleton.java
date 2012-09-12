@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.service;
+package br.unioeste.foz.cc.tcc.infra;
 
 import java.sql.Connection;
 import java.sql.Date;
