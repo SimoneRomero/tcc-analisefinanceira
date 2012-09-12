@@ -2,6 +2,7 @@ package br.unioeste.foz.cc.tcc.empresa;
 
 public class SituacaoRegCVM {
 
+	private int id;
 	private String situacao;
 
 	public SituacaoRegCVM(String situacao) {
@@ -15,6 +16,20 @@ public class SituacaoRegCVM {
 
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	};
 
 }

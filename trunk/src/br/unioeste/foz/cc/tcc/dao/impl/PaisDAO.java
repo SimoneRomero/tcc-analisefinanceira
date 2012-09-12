@@ -3,40 +3,47 @@ package br.unioeste.foz.cc.tcc.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import br.unioeste.foz.cc.tcc.dao.IDAO;
 import br.unioeste.foz.cc.tcc.empresa.Pais;
 import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
 
-public class PaisDAO implements IDAO {
+public class PaisDAO{
 
-	QueryMakerSingleton qm;
+	QueryMakerSingleton queryMaker;
 
 	public PaisDAO() throws SQLException {
-		qm = QueryMakerSingleton.getInstance();
+		queryMaker = QueryMakerSingleton.getInstance();
 	}
 
-	@Override
-	public int inserir(Object object) throws SQLException {
+	public int inserir(Pais pais) throws SQLException {
+		String columns = "idpais, nome";
 
-		return 0;
+		Object[] values = { getNextId(), pais.getNome() };
+
+		return queryMaker.insert("pais", columns, values);
 	}
 
-	@Override
-	public void alterar(Object object) throws SQLException {
-		// TODO Auto-generated method stub
+	public void alterar(Pais pais) throws SQLException {
+		String[] columns = { "idpais", "nome" };
 
+		Object[] values = { pais.getId(), pais.getNome() };
+
+		queryMaker.updateWhere("pais", columns, "idpais = ?", values,
+				pais.getId());
 	}
 
-	@Override
-	public void remover(Object object) throws SQLException {
-		// TODO Auto-generated method stub
-
+	public void remover(Pais pais) throws SQLException {
+		queryMaker.deleteWhere("pais", "idpais = ?", pais.getId());
 	}
 
-	@Override
 	public Object obter(int id) throws SQLException {
-		ResultSet rs = qm.selectAllWhere("pais", "idpais = ?", id);
-		return new Pais(rs.getString(2));
+		ResultSet rs = queryMaker.selectAllWhere("pais", "idpais = ?", id);
+		Pais pais = new Pais(rs.getString(2));
+		pais.setId(id);
+		return pais;
+	}
+
+	private int getNextId() throws SQLException {
+		return queryMaker.selectSequence("idpais");
 	}
 
 }

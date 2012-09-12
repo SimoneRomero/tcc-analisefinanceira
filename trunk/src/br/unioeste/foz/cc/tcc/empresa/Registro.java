@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Registro {
 
+	private int id;
 	private Date dataRegCategoria;
 	private Date dataInicioSituacao;
 	private Date dataRegCVM;
@@ -80,6 +81,20 @@ public class Registro {
 
 	public void setSituacaoRegCVM(SituacaoRegCVM situacaoRegCVM) {
 		this.situacaoRegCVM = situacaoRegCVM;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
 
 }

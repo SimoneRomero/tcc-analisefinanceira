@@ -6,6 +6,7 @@ import java.util.List;
 
 public class RelatorioAnual {
 
+	private int id;
 	private Date finalPeriodo;
 	private List<AtributoValor> atributos;
 
@@ -17,6 +18,13 @@ public class RelatorioAnual {
 	public RelatorioAnual(Date finalPeriodo, List<AtributoValor> atributos) {
 		this.finalPeriodo = finalPeriodo;
 		this.atributos = atributos;
+	}
+
+	public RelatorioAnual(int id, java.sql.Date finalPeriodo,
+			List<AtributoValor> atributos) {
+		this.finalPeriodo = finalPeriodo;
+		this.atributos = atributos;
+		this.id = id;
 	}
 
 	public Date getFinalPeriodo() {
@@ -35,12 +43,27 @@ public class RelatorioAnual {
 		this.atributos = atributoValor;
 	}
 
-	public void addAtributoValor(AtributoValor atributoValor){
+	public void addAtributoValor(AtributoValor atributoValor) {
 		this.atributos.add(atributoValor);
 	}
 
-	public void addAtributoValor(List<AtributoValor> atributos){
+	public void addAtributoValor(List<AtributoValor> atributos) {
 		this.atributos.addAll(atributos);
+	}
+
+	/**
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
 
 }
