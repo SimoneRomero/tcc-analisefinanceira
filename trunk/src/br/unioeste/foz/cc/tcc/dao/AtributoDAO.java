@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.dao.impl;
+package br.unioeste.foz.cc.tcc.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,21 +6,34 @@ import java.sql.SQLException;
 import br.unioeste.foz.cc.tcc.demonstracao.Atributo;
 import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
 
-public class AtributoDAO{
+public class AtributoDAO {
 
-	QueryMakerSingleton queryMaker;
+	private QueryMakerSingleton queryMaker;
 
 	public AtributoDAO() throws SQLException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 
 	public int inserir(Atributo atributo) throws SQLException {
+
+		try {
+			return existe(atributo);
+		} catch (SQLException e) {
+		}
+
 		String columns = "idatributo, descricao, codigo";
 
 		Object[] values = { getNextId(), atributo.getDescricao(),
 				atributo.getCodigo() };
 
 		return queryMaker.insert("atributo", columns, values);
+	}
+
+	public int existe(Atributo atributo) throws SQLException {
+		ResultSet rs = queryMaker.selectWhere("atributo", "idatributo",
+				"descricao = ? and codigo = " + atributo.getCodigo(),
+				atributo.getDescricao());
+		return rs.getInt(1);
 	}
 
 	public void alterar(Atributo atributo) throws SQLException {
@@ -34,8 +47,7 @@ public class AtributoDAO{
 	}
 
 	public void remover(Atributo atributo) throws SQLException {
-		queryMaker.deleteWhere("atributo", "idatributo = ?",
-				atributo.getId());
+		queryMaker.deleteWhere("atributo", "idatributo = ?", atributo.getId());
 	}
 
 	public Atributo obter(int id) throws SQLException {

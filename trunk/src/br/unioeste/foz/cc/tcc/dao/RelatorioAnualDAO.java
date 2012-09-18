@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.dao.impl;
+package br.unioeste.foz.cc.tcc.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,16 +10,16 @@ import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
 
 public class RelatorioAnualDAO {
 
-	QueryMakerSingleton queryMaker;
+	private QueryMakerSingleton queryMaker;
 
 	public RelatorioAnualDAO() throws SQLException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 
-	public int inserir(RelatorioAnual relatorioAnual) throws SQLException {
-		String columns = "idrelatorioAnual, finalPeriodo";
+	public int inserir(RelatorioAnual relatorioAnual, int idEmpresa) throws SQLException {
+		String columns = "idrelatorioAnual, finalPeriodo, empresa_idempresa";
 
-		Object[] values = { getNextId(), relatorioAnual.getFinalPeriodo() };
+		Object[] values = { getNextId(), relatorioAnual.getFinalPeriodo(), idEmpresa };
 
 		return queryMaker.insert("relatorioAnual", columns, values);
 	}

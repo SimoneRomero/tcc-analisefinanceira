@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.dao.impl;
+package br.unioeste.foz.cc.tcc.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,18 +8,28 @@ import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
 
 public class SituacaoRegCVMDAO{
 
-	QueryMakerSingleton queryMaker;
+	private QueryMakerSingleton queryMaker;
 
 	public SituacaoRegCVMDAO() throws SQLException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 
 	public int inserir(SituacaoRegCVM situacaoRegCVM) throws SQLException {
+
+		try{return existe(situacaoRegCVM);}
+		catch (SQLException e) {}
+
 		String columns = "idsituacaoRegCVM, situacao";
 
 		Object[] values = { getNextId(), situacaoRegCVM.getSituacao() };
 
 		return queryMaker.insert("situacaoregcvm", columns, values);
+	}
+
+	public int existe(SituacaoRegCVM situacaoRegCVM) throws SQLException {
+			ResultSet rs = queryMaker.selectWhere("situacaoregcvm", "idsituacaoregcvm",
+					"situacao = ?", situacaoRegCVM.getSituacao());
+			return rs.getInt(1);
 	}
 
 	public void alterar(SituacaoRegCVM situacaoRegCVM) throws SQLException {

@@ -18,6 +18,7 @@ import br.unioeste.foz.cc.tcc.empresa.SituacaoRegCVM;
 import br.unioeste.foz.cc.tcc.empresa.TipoParticipante;
 
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
+import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTable;
 import com.gargoylesoftware.htmlunit.html.HtmlTableRow;
@@ -26,6 +27,33 @@ public class ParserCVMWeb {
 
 	public ParserCVMWeb() {
 
+	}
+
+	public HashBackMap<String, String> obterLinks(HtmlPage historico) {
+		HashBackMap<String, String> links = new HashBackMap<String, String>();
+
+		HtmlDivision div = historico
+				.getHtmlElementById("ctl00_contentPlaceHolderConteudo_divDemonstrativo");
+
+		List<HtmlElement> elements = div.getHtmlElementsByTagName("li");
+		java.util.Collections.reverse(elements);
+		for (HtmlElement li : elements) {
+			String date = li.getElementsByTagName("a").get(0).getTextContent();
+			date = date.substring(date.lastIndexOf("/") + 1, date.indexOf("-") - 1);
+
+			if (Integer.valueOf(date) > 2009) {
+
+				String link = li.getElementsByTagName("a").get(0)
+						.getAttribute("href");
+
+				links.put(
+						date,
+						link.substring(link.indexOf("'") + 1,
+								link.lastIndexOf("'")));
+			}
+		}
+
+		return links;
 	}
 
 	public Empresa obterDadosGerais(HtmlPage principal) throws ParseException {
@@ -38,36 +66,34 @@ public class ParserCVMWeb {
 		HtmlTable htSetor = hp
 				.getHtmlElementById("ctl00_cphPopUp_tabelaDadosSetor");
 
-		Empresa empresa = new Empresa(ht.getRows().get(0).getCells().get(1).asText(),
-				ht.getRows().get(2).getCells().get(3).asText(),
-				ht.getRows().get(6).getCells().get(1).asText(),
-				Formatador.string2codCvm(ht.getRows().get(3).getCells().get(1).asText()),
-				new Setor(htSetor.getRows().get(0).getCells().get(1).asText(),
-						htSetor.getRows().get(1).getCells().get(1).asText()),
-				new Registro(Formatador.string2date(htRegistro.getRows().get(1).getCells().get(3).asText()),
-						Formatador.string2date(htRegistro.getRows().get(2).getCells().get(3).asText()),
-						Formatador.string2date(ht.getRows().get(3).getCells().get(3).asText()),
-						new TipoParticipante(htRegistro.getRows().get(0).getCells().get(1).asText()),
-						new CategoriaRegCVM(htRegistro.getRows().get(1).getCells().get(1).asText()),
-						new SituacaoEmissor(htRegistro.getRows().get(2).getCells().get(1).asText()),
-						new SituacaoRegCVM(ht.getRows().get(4).getCells().get(1).asText())),
+		Empresa empresa = new Empresa(ht.getRows().get(0).getCells().get(1)
+				.asText(), ht.getRows().get(2).getCells().get(3).asText(), ht
+				.getRows().get(6).getCells().get(1).asText(),
+				Formatador.string2codCvm(ht.getRows().get(3).getCells().get(1)
+						.asText()), new Setor(htSetor.getRows().get(0)
+						.getCells().get(1).asText(), htSetor.getRows().get(1)
+						.getCells().get(1).asText()), new Registro(
+						Formatador.string2date(htRegistro.getRows().get(1)
+								.getCells().get(3).asText()),
+						Formatador.string2date(htRegistro.getRows().get(2)
+								.getCells().get(3).asText()),
+						Formatador.string2date(ht.getRows().get(3).getCells()
+								.get(3).asText()), new TipoParticipante(
+								htRegistro.getRows().get(0).getCells().get(1)
+										.asText()), new CategoriaRegCVM(
+								htRegistro.getRows().get(1).getCells().get(1)
+										.asText()), new SituacaoEmissor(
+								htRegistro.getRows().get(2).getCells().get(1)
+										.asText()), new SituacaoRegCVM(ht
+								.getRows().get(4).getCells().get(1).asText())),
 				ht.getRows().get(1).getCells().get(3).asText(),
-				Formatador.string2date(ht.getRows().get(1).getCells().get(1).asText()),
-				Formatador.string2date(ht.getRows().get(2).getCells().get(1).asText()),
-				Formatador.string2date(ht.getRows().get(4).getCells().get(3).asText()),
-				new Pais(ht.getRows().get(5).getCells().get(1).asText())
-				);
+				Formatador.string2date(ht.getRows().get(1).getCells().get(1)
+						.asText()), Formatador.string2date(ht.getRows().get(2)
+						.getCells().get(1).asText()), Formatador.string2date(ht
+						.getRows().get(4).getCells().get(3).asText()),
+				new Pais(ht.getRows().get(5).getCells().get(1).asText()));
 
 		return empresa;
-	}
-
-	public String obterURLPrincipal(HtmlPage listada) {
-		HtmlDivision div = listada
-				.getHtmlElementById("ctl00_contentPlaceHolderConteudo_DemonstrativoDfp");
-
-		String link = div.getHtmlElementsByTagName("li").get(0)
-				.getElementsByTagName("a").get(0).getAttribute("href");
-		return link.substring(link.indexOf("'") + 1, link.lastIndexOf("'"));
 	}
 
 	public HashBackMap<Integer, Empresa> obterEmpresasListadas(HtmlPage pagina) {
@@ -92,7 +118,7 @@ public class ParserCVMWeb {
 	}
 
 	public int obterNumeroDocumento(String link) {
-		return Integer.valueOf(link.substring(link.lastIndexOf("=") + 1));
+		return Integer.valueOf(link.substring(link.indexOf("=") + 1, link.indexOf("&")));
 	}
 
 	private List<AtributoValor> obterAtributos(HtmlPage pagina, int coluna) {

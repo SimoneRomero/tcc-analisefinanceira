@@ -15,7 +15,7 @@ public class Formatador {
 
 	public static Date string2date(String data) throws ParseException {
 		if (data.equals(""))
-			return null;
+			return new Date(0);
 		else
 			return (Date) formatterDate.parse(data);
 	}

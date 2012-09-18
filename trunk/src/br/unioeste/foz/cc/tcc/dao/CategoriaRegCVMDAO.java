@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.dao.impl;
+package br.unioeste.foz.cc.tcc.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,18 +8,29 @@ import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
 
 public class CategoriaRegCVMDAO {
 
-	QueryMakerSingleton queryMaker;
+	private QueryMakerSingleton queryMaker;
 
 	public CategoriaRegCVMDAO() throws SQLException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 
 	public int inserir(CategoriaRegCVM categoriaRegCVM) throws SQLException {
+
+		try{return existe(categoriaRegCVM);}
+		catch (SQLException e) {}
+
 		String columns = "idcategoriaRegCVM, categoria";
 
 		Object[] values = { getNextId(), categoriaRegCVM.getCategoria() };
 
 		return queryMaker.insert("categoriaregcvm", columns, values);
+	}
+
+	public int existe(CategoriaRegCVM categoriaRegCVM) throws SQLException {
+		ResultSet rs = queryMaker.selectWhere("categoriaregcvm",
+				"idcategoriaregcvm", "categoria = ?",
+				categoriaRegCVM.getCategoria());
+		return rs.getInt(1);
 	}
 
 	public void alterar(CategoriaRegCVM categoriaRegCVM) throws SQLException {

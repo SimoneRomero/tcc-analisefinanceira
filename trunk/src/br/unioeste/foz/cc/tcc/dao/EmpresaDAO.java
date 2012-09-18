@@ -1,8 +1,9 @@
-package br.unioeste.foz.cc.tcc.dao.impl;
+package br.unioeste.foz.cc.tcc.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
 import br.unioeste.foz.cc.tcc.empresa.CategoriaRegCVM;
 import br.unioeste.foz.cc.tcc.empresa.Empresa;
 import br.unioeste.foz.cc.tcc.empresa.Pais;
@@ -15,7 +16,7 @@ import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
 
 public class EmpresaDAO{
 
-	QueryMakerSingleton queryMaker;
+	private QueryMakerSingleton queryMaker;
 
 	public EmpresaDAO() throws SQLException {
 		queryMaker = QueryMakerSingleton.getInstance();
@@ -23,27 +24,43 @@ public class EmpresaDAO{
 
 	public int inserir(Empresa empresa) throws SQLException {
 
+		PaisDAO paisDAO = new PaisDAO();
+		SituacaoRegCVMDAO situacaoRegCVMDAO = new SituacaoRegCVMDAO();
+		TipoParticipanteDAO tipoDAO = new TipoParticipanteDAO();
+		CategoriaRegCVMDAO categoriaDAO = new CategoriaRegCVMDAO();
+		SituacaoEmissorDAO situacaoEmissorDAO = new SituacaoEmissorDAO();
+		RelatorioAnualDAO relatorioAnualDAO = new RelatorioAnualDAO();
+
 		String columns = "idempresa, codigoCVM, nome , cnpj, site, nomeAnterior, "
 				+ "dataAlteracaoNome, dataConstituicao, dataRegCVM, dataInicioCVM, dataRegCategoria, "
 				+ "dataInicioSituacao, atividade, descricaoatividade, Pais_idPais, TipoParticipante_idTipoParticipante,"
 				+ "SituacaoEmissor_idSituacaoEmissor, SituacaoRegCVM_idSituacaoRegCVM, CategoriaRegCVM_idCategoriaRegCVM";
 
-		Object[] values = { getNextId(), empresa.getCodigoCVM(),
-				empresa.getNome(), empresa.getCnpj(), empresa.getSite(),
-				empresa.getNomeAnterior(), empresa.getDataAlteracaoNome(),
+		Object[] values = { getNextId(),
+				empresa.getCodigoCVM(),
+				empresa.getNome(), 
+				empresa.getCnpj(), 
+				empresa.getSite(),
+				empresa.getNomeAnterior(), 
+				empresa.getDataAlteracaoNome(),
 				empresa.getDataConstituicao(),
 				empresa.getRegistro().getDataRegCVM(),
 				empresa.getDataInicioCVM(),
 				empresa.getRegistro().getDataRegCategoria(),
 				empresa.getRegistro().getDataInicioSituacao(),
 				empresa.getSetor().getAtividade(),
-				empresa.getSetor().getDescricao(), empresa.getPais().getId(),
-				empresa.getRegistro().getTipo().getId(),
-				empresa.getRegistro().getSituacaoEmissor().getId(),
-				empresa.getRegistro().getSituacaoRegCVM().getId(),
-				empresa.getRegistro().getCategoriaCVM().getId() };
+				empresa.getSetor().getDescricao(),
+				paisDAO.inserir(empresa.getPais()),
+				tipoDAO.inserir(empresa.getRegistro().getTipo()),
+				situacaoEmissorDAO.inserir(empresa.getRegistro().getSituacaoEmissor()),
+				situacaoRegCVMDAO.inserir(empresa.getRegistro().getSituacaoRegCVM()),
+				categoriaDAO.inserir(empresa.getRegistro().getCategoriaCVM()) };
 
-		return queryMaker.insert("empresa", columns, values);
+		int idEmpresa = queryMaker.insert("empresa", columns, values);
+		for(RelatorioAnual r : empresa.getRelatorios())
+			relatorioAnualDAO.inserir(r, idEmpresa);
+
+		return idEmpresa;
 	}
 
 	public void alterar(Empresa empresa) throws SQLException {
