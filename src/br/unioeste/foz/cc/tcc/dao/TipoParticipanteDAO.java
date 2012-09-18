@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.dao.impl;
+package br.unioeste.foz.cc.tcc.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,18 +8,28 @@ import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
 
 public class TipoParticipanteDAO{
 
-	QueryMakerSingleton queryMaker;
+	private QueryMakerSingleton queryMaker;
 
 	public TipoParticipanteDAO() throws SQLException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 
 	public int inserir(TipoParticipante tipoParticipante) throws SQLException {
+
+		try{return existe(tipoParticipante);}
+		catch (SQLException e) {}
+
 		String columns = "idtipoParticipante, tipo";
 
 		Object[] values = { getNextId(), tipoParticipante.getTipo() };
 
 		return queryMaker.insert("tipoparticipante", columns, values);
+	}
+
+	public int existe(TipoParticipante tipoParticipante) throws SQLException {
+		ResultSet rs = queryMaker.selectWhere("tipoparticipante", "idtipoparticipante",
+				"tipo = ?", tipoParticipante.getTipo());
+		return rs.getInt(1);
 	}
 
 	public void alterar(TipoParticipante tipoParticipante) throws SQLException {

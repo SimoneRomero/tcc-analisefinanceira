@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.dao.impl;
+package br.unioeste.foz.cc.tcc.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
 
 public class SituacaoEmissorDAO {
 
-	QueryMakerSingleton queryMaker;
+	private QueryMakerSingleton queryMaker;
 
 	public SituacaoEmissorDAO() throws SQLException {
 		queryMaker = QueryMakerSingleton.getInstance();
@@ -16,11 +16,23 @@ public class SituacaoEmissorDAO {
 
 	public int inserir(SituacaoEmissor situacaoEmissor) throws SQLException {
 
+		try {
+			return existe(situacaoEmissor);
+		} catch (SQLException e) {
+		}
+
 		String columns = "idsituacaoEmissor, situacao";
 
 		Object[] values = { getNextId(), situacaoEmissor.getSituacao() };
 
 		return queryMaker.insert("situacaoemissor", columns, values);
+	}
+
+	public int existe(SituacaoEmissor situacaoEmissor) throws SQLException {
+		ResultSet rs = queryMaker.selectWhere("situacaoemissor",
+				"idsituacaoemissor", "situacao = ?",
+				situacaoEmissor.getSituacao());
+		return rs.getInt(1);
 	}
 
 	public void alterar(SituacaoEmissor situacaoEmissor) throws SQLException {

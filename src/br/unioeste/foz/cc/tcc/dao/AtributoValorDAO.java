@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.dao.impl;
+package br.unioeste.foz.cc.tcc.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +10,7 @@ import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
 
 public class AtributoValorDAO{
 
-	QueryMakerSingleton queryMaker;
+	private QueryMakerSingleton queryMaker;
 
 	public AtributoValorDAO() throws SQLException {
 		queryMaker = QueryMakerSingleton.getInstance();
