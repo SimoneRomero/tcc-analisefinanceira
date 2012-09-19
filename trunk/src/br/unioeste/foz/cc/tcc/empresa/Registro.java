@@ -1,6 +1,6 @@
 package br.unioeste.foz.cc.tcc.empresa;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Registro {
 

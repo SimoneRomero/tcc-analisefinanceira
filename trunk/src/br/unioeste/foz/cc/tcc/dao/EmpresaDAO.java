@@ -2,6 +2,8 @@ package br.unioeste.foz.cc.tcc.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
 import br.unioeste.foz.cc.tcc.empresa.CategoriaRegCVM;
@@ -24,6 +26,9 @@ public class EmpresaDAO{
 
 	public int inserir(Empresa empresa) throws SQLException {
 
+		try{ return existe(empresa);}
+		catch (SQLException e) {}
+
 		PaisDAO paisDAO = new PaisDAO();
 		SituacaoRegCVMDAO situacaoRegCVMDAO = new SituacaoRegCVMDAO();
 		TipoParticipanteDAO tipoDAO = new TipoParticipanteDAO();
@@ -38,10 +43,10 @@ public class EmpresaDAO{
 
 		Object[] values = { getNextId(),
 				empresa.getCodigoCVM(),
-				empresa.getNome(), 
-				empresa.getCnpj(), 
+				empresa.getNome(),
+				empresa.getCnpj(),
 				empresa.getSite(),
-				empresa.getNomeAnterior(), 
+				empresa.getNomeAnterior(),
 				empresa.getDataAlteracaoNome(),
 				empresa.getDataConstituicao(),
 				empresa.getRegistro().getDataRegCVM(),
@@ -60,7 +65,15 @@ public class EmpresaDAO{
 		for(RelatorioAnual r : empresa.getRelatorios())
 			relatorioAnualDAO.inserir(r, idEmpresa);
 
+
+
 		return idEmpresa;
+	}
+
+	public int existe(Empresa empresa) throws SQLException {
+			ResultSet rs = queryMaker.selectWhere("empresa", "idempresa",
+					"codigoCVM = ?", empresa.getCodigoCVM());
+			return rs.getInt(1);
 	}
 
 	public void alterar(Empresa empresa) throws SQLException {
@@ -98,10 +111,14 @@ public class EmpresaDAO{
 				empresa.getId());
 	}
 
-	public Empresa obter(int id) throws SQLException {
+	public Empresa obter(int id, boolean isCodCVM) throws SQLException {
+
+		String coluna = "idempresa";
+		if(isCodCVM)
+			coluna = "codigocvm";
 
 		ResultSet result = queryMaker.selectAllWhere("empresa",
-				"idempresa = ?", id);
+				coluna + " = ?", id);
 
 		PaisDAO paisDAO = new PaisDAO();
 		SituacaoRegCVMDAO situacaoRegCVMDAO = new SituacaoRegCVMDAO();
@@ -132,6 +149,21 @@ public class EmpresaDAO{
 
 	private int getNextId() throws SQLException {
 		return queryMaker.selectSequence("idempresa");
+	}
+
+	public List<Empresa> obterTodos() throws SQLException {
+		ArrayList<Empresa> empresas = new ArrayList<Empresa>();
+
+		ResultSet rs = queryMaker.select("empresa","idempresa");
+
+		empresas.add(obter(rs.getInt(1), false));
+
+		while(rs.next())
+			empresas.add(obter(rs.getInt(1), false));
+
+		return empresas;
+
+
 	}
 
 }

@@ -31,8 +31,7 @@ public class AtributoDAO {
 
 	public int existe(Atributo atributo) throws SQLException {
 		ResultSet rs = queryMaker.selectWhere("atributo", "idatributo",
-				"descricao = ? and codigo = " + atributo.getCodigo(),
-				atributo.getDescricao());
+				"codigo = ?", atributo.getCodigo());
 		return rs.getInt(1);
 	}
 

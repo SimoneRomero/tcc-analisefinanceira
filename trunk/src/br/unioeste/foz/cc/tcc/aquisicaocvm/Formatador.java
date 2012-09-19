@@ -3,7 +3,7 @@ package br.unioeste.foz.cc.tcc.aquisicaocvm;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Formatador {
 		if (data.equals(""))
 			return new Date(0);
 		else
-			return (Date) formatterDate.parse(data);
+			return new Date(formatterDate.parse(data).getTime());
 	}
 
 	public static int string2codCvm(String codCVM) {
