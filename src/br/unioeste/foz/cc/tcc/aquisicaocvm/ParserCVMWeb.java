@@ -2,7 +2,7 @@ package br.unioeste.foz.cc.tcc.aquisicaocvm;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import br.unioeste.foz.cc.tcc.demonstracao.Atributo;

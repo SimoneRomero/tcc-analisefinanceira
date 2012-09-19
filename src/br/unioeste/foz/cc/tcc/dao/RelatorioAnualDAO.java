@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.unioeste.foz.cc.tcc.demonstracao.AtributoValor;
 import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
 import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
 
@@ -21,7 +22,17 @@ public class RelatorioAnualDAO {
 
 		Object[] values = { getNextId(), relatorioAnual.getFinalPeriodo(), idEmpresa };
 
-		return queryMaker.insert("relatorioAnual", columns, values);
+		int idRelatorio = queryMaker.insert("relatorioAnual", columns, values);
+
+		AtributoValorDAO atrvle = new AtributoValorDAO();
+		AtributoDAO atributoDAO = new AtributoDAO();
+		for(AtributoValor atr : relatorioAnual.getAtributoValor()){
+			atr.setIdAtributo(atributoDAO.inserir(atr.getAtributo()));
+			atr.setIdRelatorioAnual(idRelatorio);
+			atrvle.inserir(atr);
+		}
+
+		return idRelatorio;
 	}
 
 	public void alterar(RelatorioAnual relatorioAnual) throws SQLException {
