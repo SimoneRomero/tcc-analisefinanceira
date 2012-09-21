@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.demonstracao;
+package br.unioeste.foz.cc.tcc.model.demonstracao;
 
 public class AtributoValor {
 

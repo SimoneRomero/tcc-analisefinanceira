@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
-import br.unioeste.foz.cc.tcc.demonstracao.Atributo;
-import br.unioeste.foz.cc.tcc.demonstracao.AtributoValor;
-import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
-import br.unioeste.foz.cc.tcc.empresa.CategoriaRegCVM;
-import br.unioeste.foz.cc.tcc.empresa.Empresa;
-import br.unioeste.foz.cc.tcc.empresa.Pais;
-import br.unioeste.foz.cc.tcc.empresa.Registro;
-import br.unioeste.foz.cc.tcc.empresa.Setor;
-import br.unioeste.foz.cc.tcc.empresa.SituacaoEmissor;
-import br.unioeste.foz.cc.tcc.empresa.SituacaoRegCVM;
-import br.unioeste.foz.cc.tcc.empresa.TipoParticipante;
+import br.unioeste.foz.cc.tcc.model.demonstracao.Atributo;
+import br.unioeste.foz.cc.tcc.model.demonstracao.AtributoValor;
+import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
+import br.unioeste.foz.cc.tcc.model.empresa.CategoriaRegCVM;
+import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
+import br.unioeste.foz.cc.tcc.model.empresa.Pais;
+import br.unioeste.foz.cc.tcc.model.empresa.Registro;
+import br.unioeste.foz.cc.tcc.model.empresa.Setor;
+import br.unioeste.foz.cc.tcc.model.empresa.SituacaoEmissor;
+import br.unioeste.foz.cc.tcc.model.empresa.SituacaoRegCVM;
+import br.unioeste.foz.cc.tcc.model.empresa.TipoParticipante;
 
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;

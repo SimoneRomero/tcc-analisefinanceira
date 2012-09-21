@@ -3,8 +3,8 @@ package br.unioeste.foz.cc.tcc.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import br.unioeste.foz.cc.tcc.empresa.CategoriaRegCVM;
 import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
+import br.unioeste.foz.cc.tcc.model.empresa.CategoriaRegCVM;
 
 public class CategoriaRegCVMDAO {
 

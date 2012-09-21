@@ -1,9 +1,9 @@
-package br.unioeste.foz.cc.tcc.empresa;
+package br.unioeste.foz.cc.tcc.model.empresa;
 
 import java.util.Date;
 import java.util.List;
 
-import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
+import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
 
 public class Empresa {
 
