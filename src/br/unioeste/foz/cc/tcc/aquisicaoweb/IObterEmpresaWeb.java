@@ -5,7 +5,7 @@ import java.net.MalformedURLException;
 import java.text.ParseException;
 
 import br.unioeste.foz.cc.tcc.aquisicaocvm.HashBackMap;
-import br.unioeste.foz.cc.tcc.empresa.Empresa;
+import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 

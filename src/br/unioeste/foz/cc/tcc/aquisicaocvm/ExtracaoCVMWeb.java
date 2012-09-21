@@ -10,8 +10,8 @@ import java.util.List;
 
 import br.unioeste.foz.cc.tcc.aquisicaoweb.ClienteWeb;
 import br.unioeste.foz.cc.tcc.aquisicaoweb.IObterEmpresaWeb;
-import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
-import br.unioeste.foz.cc.tcc.empresa.Empresa;
+import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
+import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;

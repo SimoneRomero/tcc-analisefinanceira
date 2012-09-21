@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.demonstracao;
+package br.unioeste.foz.cc.tcc.model.demonstracao;
 
 import java.util.ArrayList;
 import java.util.Date;

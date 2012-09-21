@@ -5,9 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.unioeste.foz.cc.tcc.demonstracao.AtributoValor;
-import br.unioeste.foz.cc.tcc.demonstracao.RelatorioAnual;
 import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
+import br.unioeste.foz.cc.tcc.model.demonstracao.AtributoValor;
+import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
 
 public class RelatorioAnualDAO {
 

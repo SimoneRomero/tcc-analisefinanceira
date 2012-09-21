@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.empresa;
+package br.unioeste.foz.cc.tcc.model.empresa;
 
 public class SituacaoEmissor {
 

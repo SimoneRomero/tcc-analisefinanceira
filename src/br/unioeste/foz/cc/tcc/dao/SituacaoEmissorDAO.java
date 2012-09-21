@@ -3,8 +3,8 @@ package br.unioeste.foz.cc.tcc.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import br.unioeste.foz.cc.tcc.empresa.SituacaoEmissor;
 import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
+import br.unioeste.foz.cc.tcc.model.empresa.SituacaoEmissor;
 
 public class SituacaoEmissorDAO {
 
