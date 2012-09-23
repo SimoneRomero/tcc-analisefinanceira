@@ -1,9 +1,9 @@
 package br.unioeste.foz.cc.tcc.aquisicaocvm;
 
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
 
 /**
  *

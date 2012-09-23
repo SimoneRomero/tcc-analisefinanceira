@@ -11,6 +11,10 @@ public class Empresas {
 		list = new ArrayList<Empresa>();
 	}
 
+	public Empresas(List<Empresa> empresas) {
+		list = new ArrayList<Empresa>(empresas);
+	}
+
 	public void add(Empresa e) {
 		list.add(e);
 	}
