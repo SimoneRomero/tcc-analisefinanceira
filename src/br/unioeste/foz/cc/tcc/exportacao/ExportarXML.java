@@ -5,11 +5,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import br.unioeste.foz.cc.tcc.aquisicaocvm.ExtracaoCVMWeb;
+import br.unioeste.foz.cc.tcc.aquisicaocvm.ParserCVMWeb;
+import br.unioeste.foz.cc.tcc.aquisicaoweb.ClienteWeb;
+import br.unioeste.foz.cc.tcc.dao.EmpresaDAO;
+import br.unioeste.foz.cc.tcc.importacao.ImportarFactory;
 import br.unioeste.foz.cc.tcc.model.demonstracao.Atributo;
 import br.unioeste.foz.cc.tcc.model.demonstracao.AtributoValor;
 import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
@@ -23,6 +30,7 @@ import br.unioeste.foz.cc.tcc.model.empresa.SituacaoEmissor;
 import br.unioeste.foz.cc.tcc.model.empresa.SituacaoRegCVM;
 import br.unioeste.foz.cc.tcc.model.empresa.TipoParticipante;
 
+import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.thoughtworks.xstream.XStream;
 
 public class ExportarXML extends ExportarFactory {
@@ -77,31 +85,24 @@ public class ExportarXML extends ExportarFactory {
 
 		saida.write(x.toXML(empresas));
 		saida.close();
+
 	}
 
-//	public static void main(String[] args)
-//			throws FailingHttpStatusCodeException, MalformedURLException,
-//			IOException, ParseException, SQLException,
-//			ParserConfigurationException, SAXException {
-//		// ExtracaoCVMWeb ec = new ExtracaoCVMWeb(new ClienteWeb(), new
-//		// ParserCVMWeb());
-//		EmpresaDAO ep = new EmpresaDAO();
-//
-//		ExportarFactory ef = ExportarFactory.getInstance("xml");
-//		// ef.exportar(ep.obterTodos(), "abc.xml");
-//
-//		// cria objeto Pessoa, setando o valor para seus atributos
-//		Empresa e = ep.obter(9512, true);
-//		Empresas l = new Empresas();
-//		l.add(e);
-//		ef.exportar(l, "saida.xml");
-//
-//		ImportarFactory ifc = ImportarFactory.getInstance("xml");
-//
-//		l = ifc.importar("saida.xml");
-//
-//		ef.exportar(l, "saida.xml");
-//
-//	}
+	public static void main(String[] args)
+			throws SQLException, IOException, ParserConfigurationException, SAXException, FailingHttpStatusCodeException, ParseException{
+		ExtracaoCVMWeb ec = new ExtracaoCVMWeb(new ClienteWeb(), new ParserCVMWeb());
+		EmpresaDAO ep = new EmpresaDAO();
+
+		ep.inserir(ec.obterEmpresa(3980));
+
+		ExportarFactory ef = ExportarFactory.getInstance("xml");
+		ef.exportar(new Empresas(ep.obterTodos()), "saida.xml");
+
+		Empresas l = new Empresas();
+		ImportarFactory ifc = ImportarFactory.getInstance("xml");
+
+		l = ifc.importar("saida.xml");
+
+	}
 
 }
