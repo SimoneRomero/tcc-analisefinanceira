@@ -28,7 +28,7 @@ public class ExtracaoCVMWeb implements IObterEmpresaWeb {
 	private final static String urlListaEmpresas = "http://www.bmfbovespa.com.br/cias-listadas/empresas-listadas/"
 			+ "BuscaEmpresaListada.aspx?Letra=";
 	private final static String urlDemonstracoes = "http://www.rad.cvm.gov.br/enetconsulta/"
-			+ "frmDemonstracaoFinanceiraITR.aspx?Informacao=1&Demonstracao=";
+			+ "frmDemonstracaoFinanceiraITR.aspx?Informacao=2&Demonstracao=";
 	private final static String urlNumeroDocumento = "&Periodo=&Grupo=&Quadro=&NomeTipoDocumento=&Titulo=&"
 			+ "Empresa=&DataReferencia=&Versao=&NumeroSequencialDocumento=";
 	private final static String urlHistorico = "http://www.bmfbovespa.com.br/cias-listadas/empresas-listadas/HistoricoFormularioReferencia.aspx?codigoCVM=";

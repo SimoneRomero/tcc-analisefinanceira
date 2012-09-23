@@ -135,6 +135,14 @@ public class Empresa {
 		return relatorios;
 	}
 
+	public RelatorioAnual getRelatorioByFinalPeriodo(Date data){
+		for(RelatorioAnual ra : this.relatorios){
+			if (ra.getFinalPeriodo().equals(data))
+				return ra;
+		}
+		return null;
+	}
+
 	public void setRelatorios(List<RelatorioAnual> relatorios) {
 		this.relatorios = relatorios;
 	}
