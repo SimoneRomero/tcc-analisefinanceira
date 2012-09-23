@@ -1,7 +1,7 @@
 package br.unioeste.foz.cc.tcc.model.demonstracao;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RelatorioAnual {
@@ -37,6 +37,28 @@ public class RelatorioAnual {
 
 	public List<AtributoValor> getAtributoValor() {
 		return atributos;
+	}
+
+	public double getValorByCodigo(String codigo) {
+		try {
+			for (AtributoValor av : this.atributos) {
+				if (av.getAtributo().getCodigo().equals(codigo))
+					return Double.valueOf(av.getValor().replace(".", "")
+							.replace(",", "."));
+			}
+			return 0;
+		} catch (NumberFormatException e) {
+			return 0;
+		}
+	}
+
+	public double getValorByDescricao(String descricao) {
+		for (AtributoValor av : this.atributos) {
+			if (av.getAtributo().getDescricao().equals(descricao))
+				return Double.valueOf(av.getValor().replace(".", "")
+						.replace(",", "."));
+		}
+		return 0;
 	}
 
 	public void setAtributoValor(List<AtributoValor> atributoValor) {
