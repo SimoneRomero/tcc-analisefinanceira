@@ -16,7 +16,7 @@ import br.unioeste.foz.cc.tcc.model.empresa.SituacaoEmissor;
 import br.unioeste.foz.cc.tcc.model.empresa.SituacaoRegCVM;
 import br.unioeste.foz.cc.tcc.model.empresa.TipoParticipante;
 
-public class EmpresaDAO{
+public class EmpresaDAO {
 
 	private QueryMakerSingleton queryMaker;
 
@@ -26,8 +26,16 @@ public class EmpresaDAO{
 
 	public int inserir(Empresa empresa) throws SQLException {
 
-		try{ return existe(empresa);}
-		catch (SQLException e) {}
+		try {
+			return existe(empresa);
+		} catch (SQLException e) {
+		}
+
+		try {
+			EmpresaListadaDAO listadaDAO = new EmpresaListadaDAO();
+			listadaDAO.remover(listadaDAO.obter(empresa.getCodigoCVM(), true));
+		} catch (SQLException e) {
+		}
 
 		PaisDAO paisDAO = new PaisDAO();
 		SituacaoRegCVMDAO situacaoRegCVMDAO = new SituacaoRegCVMDAO();
@@ -41,7 +49,8 @@ public class EmpresaDAO{
 				+ "dataInicioSituacao, atividade, descricaoatividade, Pais_idPais, TipoParticipante_idTipoParticipante,"
 				+ "SituacaoEmissor_idSituacaoEmissor, SituacaoRegCVM_idSituacaoRegCVM, CategoriaRegCVM_idCategoriaRegCVM";
 
-		Object[] values = { getNextId(),
+		Object[] values = {
+				getNextId(),
 				empresa.getCodigoCVM(),
 				empresa.getNome(),
 				empresa.getCnpj(),
@@ -57,23 +66,23 @@ public class EmpresaDAO{
 				empresa.getSetor().getDescricao(),
 				paisDAO.inserir(empresa.getPais()),
 				tipoDAO.inserir(empresa.getRegistro().getTipo()),
-				situacaoEmissorDAO.inserir(empresa.getRegistro().getSituacaoEmissor()),
-				situacaoRegCVMDAO.inserir(empresa.getRegistro().getSituacaoRegCVM()),
+				situacaoEmissorDAO.inserir(empresa.getRegistro()
+						.getSituacaoEmissor()),
+				situacaoRegCVMDAO.inserir(empresa.getRegistro()
+						.getSituacaoRegCVM()),
 				categoriaDAO.inserir(empresa.getRegistro().getCategoriaCVM()) };
 
 		int idEmpresa = queryMaker.insert("empresa", columns, values);
-		for(RelatorioAnual r : empresa.getRelatorios())
+		for (RelatorioAnual r : empresa.getRelatorios())
 			relatorioAnualDAO.inserir(r, idEmpresa);
-
-
 
 		return idEmpresa;
 	}
 
 	public int existe(Empresa empresa) throws SQLException {
-			ResultSet rs = queryMaker.selectWhere("empresa", "idempresa",
-					"codigoCVM = ?", empresa.getCodigoCVM());
-			return rs.getInt(1);
+		ResultSet rs = queryMaker.selectWhere("empresa", "idempresa",
+				"codigoCVM = ?", empresa.getCodigoCVM());
+		return rs.getInt(1);
 	}
 
 	public void alterar(Empresa empresa) throws SQLException {
@@ -107,14 +116,13 @@ public class EmpresaDAO{
 	}
 
 	public void remover(Empresa empresa) throws SQLException {
-		queryMaker.deleteWhere("empresa", "idempresa = ?",
-				empresa.getId());
+		queryMaker.deleteWhere("empresa", "idempresa = ?", empresa.getId());
 	}
 
 	public Empresa obter(int id, boolean isCodCVM) throws SQLException {
 
 		String coluna = "idempresa";
-		if(isCodCVM)
+		if (isCodCVM)
 			coluna = "codigocvm";
 
 		ResultSet result = queryMaker.selectAllWhere("empresa",
@@ -154,16 +162,28 @@ public class EmpresaDAO{
 	public List<Empresa> obterTodos() throws SQLException {
 		ArrayList<Empresa> empresas = new ArrayList<Empresa>();
 
-		ResultSet rs = queryMaker.select("empresa","idempresa");
+		ResultSet rs = queryMaker.select("empresa", "idempresa");
 
 		empresas.add(obter(rs.getInt(1), false));
 
-		while(rs.next())
+		while (rs.next())
 			empresas.add(obter(rs.getInt(1), false));
 
 		return empresas;
 
-
 	}
 
+	public List<Empresa> obterTodosPorNome(String nome) throws SQLException {
+		ArrayList<Empresa> empresas = new ArrayList<Empresa>();
+		
+		System.out.println(nome);
+
+		ResultSet rs = queryMaker.selectWhere("empresa", "idempresa", "nome LIKE ?", nome);
+		empresas.add(obter(rs.getInt(1), false));
+
+		while (rs.next())
+			empresas.add(obter(rs.getInt(1), false));
+
+		return empresas;
+	}
 }

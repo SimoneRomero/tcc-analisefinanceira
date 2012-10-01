@@ -43,6 +43,11 @@ public class Empresa {
 		this.nome = nome;
 	}
 
+	public Empresa(String nome, int codCVM) {
+		this.nome = nome;
+		this.codigoCVM = codCVM;
+	}
+
 	public String getNome() {
 		return nome;
 	}

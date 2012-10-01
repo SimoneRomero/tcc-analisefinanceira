@@ -19,4 +19,12 @@ public class Empresas {
 		list.add(e);
 	}
 
+	public List<Empresa> getList() {
+		return list;
+	}
+
+	public void setList(List<Empresa> list) {
+		this.list = list;
+	}
+
 }
