@@ -1,19 +1,29 @@
 package br.unioeste.foz.cc.tcc.view;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.UIManager;
+import javax.swing.JToolBar;
+import javax.swing.JTree;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.table.JTableHeader;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 public class MainFrame extends JFrame implements ActionListener {
 	JDesktopPane desktop;
@@ -22,7 +32,6 @@ public class MainFrame extends JFrame implements ActionListener {
 	public MainFrame() {
 		super("Sistema de ADF");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setFont(new Font("HandelGothic BT", Font.PLAIN, 12));
 
 		// Make the big window be indented 50 pixels from each edge
 		// of the screen.
@@ -33,196 +42,75 @@ public class MainFrame extends JFrame implements ActionListener {
 		// Set up the GUI.
 		desktop = new JDesktopPane(); // a specialized layered pane
 		// createFrame(); // create first "window"
-//		setContentPane(desktop);
-		setContentPane(new ProcurarEmpresa());
-		desktop.add(new ProcurarEmpresa());
+		setContentPane(desktop);
 
-//
-//		JSplitPane splitPane = new JSplitPane();
-//		splitPane.setBounds(0, 42, 803, 567);
-//		desktop.add(splitPane);
-//
-//		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-//		tabbedPane.setFont(new Font("HandelGothic BT", Font.PLAIN, 11));
-//		splitPane.setRightComponent(tabbedPane);
-//
-//		String[] columnNames = { "Código", "Descrição", "2011", "2010", "2009" };
-//
-//		table = new JTable();
-//		table.setFont(new Font("HandelGothic BT", Font.PLAIN, 11));
-//		table.setCellSelectionEnabled(true);
-//		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//		table.setColumnSelectionAllowed(true);
-//
-//		table.getTableHeader().setFont(
-//				new Font("HandelGothic BT", Font.PLAIN, 11));
-//
-//		JPanel jp = new JPanel();
-//		jp.setLayout(new BorderLayout());
-//		JTableHeader jth = table.getTableHeader();
-//		table.setAutoCreateRowSorter(true);
-//		jth.setFont(new Font("HandelGothic BT", Font.PLAIN, 11));
-//
-//		JScrollPane j2 = new JScrollPane();
-//		j2.setViewportView(table);
-//
-//		jp.add(jth, BorderLayout.PAGE_START);
-//		jp.add(j2, BorderLayout.CENTER);
-//
-//		tabbedPane.addTab("Balan\u00E7o Patrimonial - Ativo", null, jp, null);
-//		tabbedPane.setTabComponentAt(tabbedPane.getTabCount() - 1,
-//				new ButtonTabComponent(tabbedPane));
-//
-//		DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Empresas");
-//		DefaultMutableTreeNode emp = null;
-//		DefaultMutableTreeNode ano = null;
-//		DefaultMutableTreeNode df = null;
-//		DefaultMutableTreeNode subdf = null;
-//
-//		emp = new DefaultMutableTreeNode("PETROLEO BRASILEIRO S.A. PETROBRAS");
-//		raiz.add(emp);
-//
-//		ano = new DefaultMutableTreeNode("2011");
-//		emp.add(ano);
-//
-//		df = new DefaultMutableTreeNode("Balanço Patrimonial");
-//		ano.add(df);
-//		subdf = new DefaultMutableTreeNode("Ativo");
-//		df.add(subdf);
-//		subdf = new DefaultMutableTreeNode("Passivo");
-//		df.add(subdf);
-//
-//		df = new DefaultMutableTreeNode("Demontração de Resultado");
-//		ano.add(df);
-//
-//		ano = new DefaultMutableTreeNode("2010");
-//		emp.add(ano);
-//
-//		df = new DefaultMutableTreeNode("Balanço Patrimonial");
-//		ano.add(df);
-//		subdf = new DefaultMutableTreeNode("Ativo");
-//		df.add(subdf);
-//		subdf = new DefaultMutableTreeNode("Passivo");
-//		df.add(subdf);
-//
-//		df = new DefaultMutableTreeNode("Demontração de Resultado");
-//		ano.add(df);
-//
-//		ano = new DefaultMutableTreeNode("2009");
-//		emp.add(ano);
-//
-//		df = new DefaultMutableTreeNode("Balanço Patrimonial");
-//		ano.add(df);
-//		subdf = new DefaultMutableTreeNode("Ativo");
-//		df.add(subdf);
-//		subdf = new DefaultMutableTreeNode("Passivo");
-//		df.add(subdf);
-//
-//		df = new DefaultMutableTreeNode("Demontração de Resultado");
-//		ano.add(df);
-//
-//		emp = new DefaultMutableTreeNode("VALE S.A.");
-//		raiz.add(emp);
-//
-//		ano = new DefaultMutableTreeNode("2011");
-//		emp.add(ano);
-//
-//		df = new DefaultMutableTreeNode("Balanço Patrimonial");
-//		ano.add(df);
-//		subdf = new DefaultMutableTreeNode("Ativo");
-//		df.add(subdf);
-//		subdf = new DefaultMutableTreeNode("Passivo");
-//		df.add(subdf);
-//
-//		df = new DefaultMutableTreeNode("Demontração de Resultado");
-//		ano.add(df);
-//
-//		ano = new DefaultMutableTreeNode("2010");
-//		emp.add(ano);
-//
-//		df = new DefaultMutableTreeNode("Balanço Patrimonial");
-//		ano.add(df);
-//		subdf = new DefaultMutableTreeNode("Ativo");
-//		df.add(subdf);
-//		subdf = new DefaultMutableTreeNode("Passivo");
-//		df.add(subdf);
-//
-//		df = new DefaultMutableTreeNode("Demontração de Resultado");
-//		ano.add(df);
-//
-//		ano = new DefaultMutableTreeNode("2009");
-//		emp.add(ano);
-//
-//		df = new DefaultMutableTreeNode("Balanço Patrimonial");
-//		ano.add(df);
-//		subdf = new DefaultMutableTreeNode("Ativo");
-//		df.add(subdf);
-//		subdf = new DefaultMutableTreeNode("Passivo");
-//		df.add(subdf);
-//
-//		df = new DefaultMutableTreeNode("Demontração de Resultado");
-//		ano.add(df);
-//
-//		JTree tree = new JTree(raiz);
-//		tree.setFont(new Font("HandelGothic BT", Font.PLAIN, 11));
-//		// for (int i = 0; i < tree.getRowCount(); i++) {
-//		// tree.expandRow(i);
-//		// }
-//		splitPane.setLeftComponent(tree);
-//		setJMenuBar(createMenuBar());
-//
-//		// Make dragging a little faster but perhaps uglier.
-//		desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
-//
-//		JToolBar toolBar_1 = new JToolBar();
-//		toolBar_1.setBounds(0, 0, 1250, 42);
-//		desktop.add(toolBar_1);
-//
-//		JButton btnProcurarEmpresa = new JButton("Procurar Empresa");
-//		btnProcurarEmpresa.setFont(new Font("HandelGothic BT", Font.PLAIN, 11));
-//		toolBar_1.add(btnProcurarEmpresa);
-//
-//		JButton btnListaDeEmpresas = new JButton("Empresas Listadas");
-//		btnListaDeEmpresas.setFont(new Font("HandelGothic BT", Font.PLAIN, 11));
-//		btnListaDeEmpresas.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) {
-//			}
-//		});
-//		toolBar_1.add(btnListaDeEmpresas);
-//
-//		toolBar_1.addSeparator();
-//		JSeparator separator = new JSeparator();
-//		separator.setOrientation(SwingConstants.VERTICAL);
-//		separator.setMaximumSize(new Dimension(1, 100));
-//		toolBar_1.add(separator);
-//		toolBar_1.addSeparator();
-//
-//		JButton btnImportar = new JButton("Importar");
-//		btnImportar.setFont(new Font("HandelGothic BT", Font.PLAIN, 11));
-//		toolBar_1.add(btnImportar);
-//
-//		JButton btnExportar = new JButton("Exportar");
-//		btnExportar.setFont(new Font("HandelGothic BT", Font.PLAIN, 11));
-//		toolBar_1.add(btnExportar);
-//		btnExportar.setIcon(null);
-//
-//		toolBar_1.addSeparator();
-//		JSeparator separator_1 = new JSeparator();
-//		separator_1.setOrientation(SwingConstants.VERTICAL);
-//		separator_1.setMaximumSize(new Dimension(1, 100));
-//		toolBar_1.add(separator_1);
-//		toolBar_1.addSeparator();
-//
-//		JButton btnAjuda = new JButton("Ajuda");
-//		btnAjuda.setFont(new Font("HandelGothic BT", Font.PLAIN, 11));
-//		toolBar_1.add(btnAjuda);
+		JSplitPane splitPane = new JSplitPane();
+		splitPane.setBounds(0, 42, 803, 567);
+		desktop.add(splitPane);
+
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		splitPane.setRightComponent(tabbedPane);
+
+		tabbedPane.addTab("Balan\u00E7o Patrimonial - Ativo", null, tabela(),
+				null);
+		tabbedPane.setTabComponentAt(tabbedPane.getTabCount() - 1,
+				new ButtonTabComponent(tabbedPane));
+
+		// for (int i = 0; i < tree.getRowCount(); i++) {
+		// tree.expandRow(i);
+		// }
+		splitPane.setLeftComponent(createTree());
+		setJMenuBar(createMenuBar());
+
+		// Make dragging a little faster but perhaps uglier.
+		desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+
+		desktop.add(createToolBar());
+
+	}
+
+	protected JToolBar createToolBar() {
+
+		JToolBar toolBar_1 = new JToolBar();
+		toolBar_1.setBounds(0, 0, 1250, 42);
+
+		JButton btnProcurarEmpresa = new JButton("Procurar Empresa");
+		toolBar_1.add(btnProcurarEmpresa);
+
+		JButton btnListaDeEmpresas = new JButton("Empresas Listadas");
+		toolBar_1.add(btnListaDeEmpresas);
+
+		toolBar_1.addSeparator();
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
+		separator.setMaximumSize(new Dimension(1, 100));
+		toolBar_1.add(separator);
+		toolBar_1.addSeparator();
+
+		JButton btnImportar = new JButton("Importar");
+		toolBar_1.add(btnImportar);
+
+		JButton btnExportar = new JButton("Exportar");
+		toolBar_1.add(btnExportar);
+		btnExportar.setIcon(null);
+
+		toolBar_1.addSeparator();
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setOrientation(SwingConstants.VERTICAL);
+		separator_1.setMaximumSize(new Dimension(1, 100));
+		toolBar_1.add(separator_1);
+		toolBar_1.addSeparator();
+
+		JButton btnAjuda = new JButton("Ajuda");
+		toolBar_1.add(btnAjuda);
+		return toolBar_1;
+
 	}
 
 	protected JMenuBar createMenuBar() {
 		JMenuBar menuBar = new JMenuBar();
 
 		JMenu mnArquivo = new JMenu("Arquivo");
-		mnArquivo.setFont(new Font("HandelGothic BT", Font.PLAIN, 12));
 		menuBar.add(mnArquivo);
 
 		JMenuItem mntmNovo = new JMenuItem("Novo");
@@ -271,7 +159,6 @@ public class MainFrame extends JFrame implements ActionListener {
 		mnArquivo.add(mntmSair);
 
 		JMenu mnEmpresas = new JMenu("Empresas");
-		mnEmpresas.setFont(new Font("HandelGothic BT", Font.PLAIN, 12));
 		menuBar.add(mnEmpresas);
 
 		JMenu mnOrdenarArvore = new JMenu("Ordenar \u00C1rvore");
@@ -284,7 +171,6 @@ public class MainFrame extends JFrame implements ActionListener {
 		mnOrdenarArvore.add(mntmRazaoSocial);
 
 		JMenu mnRelatorios = new JMenu("Relat\u00F3rios");
-		mnRelatorios.setFont(new Font("HandelGothic BT", Font.PLAIN, 12));
 		menuBar.add(mnRelatorios);
 
 		JMenu mnAnalisar = new JMenu("Analisar");
@@ -300,7 +186,6 @@ public class MainFrame extends JFrame implements ActionListener {
 		mnIndicadores.add(mntmGiros);
 
 		JMenu mnCvm = new JMenu("CVM");
-		mnCvm.setFont(new Font("HandelGothic BT", Font.PLAIN, 12));
 		menuBar.add(mnCvm);
 
 		JMenuItem mntmEmpresasListadas = new JMenuItem("Empresas Listadas");
@@ -310,7 +195,6 @@ public class MainFrame extends JFrame implements ActionListener {
 		mnCvm.add(mntmProcurarEmpresa);
 
 		JMenu mnAjuda = new JMenu("Ajuda");
-		mnAjuda.setFont(new Font("HandelGothic BT", Font.PLAIN, 12));
 		menuBar.add(mnAjuda);
 
 		JMenuItem mntmTopicosDeAjuda = new JMenuItem("T\u00F3picos de Ajuda");
@@ -324,6 +208,100 @@ public class MainFrame extends JFrame implements ActionListener {
 		mnAjuda.add(mntmSobre);
 
 		return menuBar;
+	}
+
+	protected JTree createTree() {
+		DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Empresas");
+		DefaultMutableTreeNode emp = null;
+		DefaultMutableTreeNode ano = null;
+		DefaultMutableTreeNode df = null;
+		DefaultMutableTreeNode subdf = null;
+
+		emp = new DefaultMutableTreeNode("PETROLEO BRASILEIRO S.A. PETROBRAS");
+		raiz.add(emp);
+
+		ano = new DefaultMutableTreeNode("2011");
+		emp.add(ano);
+
+		df = new DefaultMutableTreeNode("Balanço Patrimonial");
+		ano.add(df);
+		subdf = new DefaultMutableTreeNode("Ativo");
+		df.add(subdf);
+		subdf = new DefaultMutableTreeNode("Passivo");
+		df.add(subdf);
+
+		df = new DefaultMutableTreeNode("Demontração de Resultado");
+		ano.add(df);
+
+		ano = new DefaultMutableTreeNode("2010");
+		emp.add(ano);
+
+		df = new DefaultMutableTreeNode("Balanço Patrimonial");
+		ano.add(df);
+		subdf = new DefaultMutableTreeNode("Ativo");
+		df.add(subdf);
+		subdf = new DefaultMutableTreeNode("Passivo");
+		df.add(subdf);
+
+		df = new DefaultMutableTreeNode("Demontração de Resultado");
+		ano.add(df);
+
+		ano = new DefaultMutableTreeNode("2009");
+		emp.add(ano);
+
+		df = new DefaultMutableTreeNode("Balanço Patrimonial");
+		ano.add(df);
+		subdf = new DefaultMutableTreeNode("Ativo");
+		df.add(subdf);
+		subdf = new DefaultMutableTreeNode("Passivo");
+		df.add(subdf);
+
+		df = new DefaultMutableTreeNode("Demontração de Resultado");
+		ano.add(df);
+
+		emp = new DefaultMutableTreeNode("VALE S.A.");
+		raiz.add(emp);
+
+		ano = new DefaultMutableTreeNode("2011");
+		emp.add(ano);
+
+		df = new DefaultMutableTreeNode("Balanço Patrimonial");
+		ano.add(df);
+		subdf = new DefaultMutableTreeNode("Ativo");
+		df.add(subdf);
+		subdf = new DefaultMutableTreeNode("Passivo");
+		df.add(subdf);
+
+		df = new DefaultMutableTreeNode("Demontração de Resultado");
+		ano.add(df);
+
+		ano = new DefaultMutableTreeNode("2010");
+		emp.add(ano);
+
+		df = new DefaultMutableTreeNode("Balanço Patrimonial");
+		ano.add(df);
+		subdf = new DefaultMutableTreeNode("Ativo");
+		df.add(subdf);
+		subdf = new DefaultMutableTreeNode("Passivo");
+		df.add(subdf);
+
+		df = new DefaultMutableTreeNode("Demontração de Resultado");
+		ano.add(df);
+
+		ano = new DefaultMutableTreeNode("2009");
+		emp.add(ano);
+
+		df = new DefaultMutableTreeNode("Balanço Patrimonial");
+		ano.add(df);
+		subdf = new DefaultMutableTreeNode("Ativo");
+		df.add(subdf);
+		subdf = new DefaultMutableTreeNode("Passivo");
+		df.add(subdf);
+
+		df = new DefaultMutableTreeNode("Demontração de Resultado");
+		ano.add(df);
+
+		return new JTree(raiz);
 	}
 
 	// React to menu selections.
@@ -359,8 +337,6 @@ public class MainFrame extends JFrame implements ActionListener {
 	private static void createAndShowGUI() {
 		// Make sure we have nice window decorations.
 		// JFrame.setDefaultLookAndFeelDecorated(true);
-		UIManager
-				.put("Frame.font", new Font("HandelGothic BT", Font.PLAIN, 12));
 
 		// Create and set up the window.
 		MainFrame frame = new MainFrame();
@@ -368,6 +344,28 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		// Display the window.
 		frame.setVisible(true);
+	}
+
+	public JPanel tabela() {
+		String[] columnNames = { "Código", "Descrição", "2011", "2010", "2009" };
+
+		JTable table = new JTable();
+		table.setCellSelectionEnabled(true);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setColumnSelectionAllowed(true);
+
+		JPanel jp = new JPanel();
+		jp.setLayout(new BorderLayout());
+		JTableHeader jth = table.getTableHeader();
+		table.setAutoCreateRowSorter(true);
+
+		JScrollPane j2 = new JScrollPane();
+		j2.setViewportView(table);
+
+		jp.add(jth, BorderLayout.PAGE_START);
+		jp.add(j2, BorderLayout.CENTER);
+
+		return jp;
 	}
 
 	public static void main(String[] args) {
