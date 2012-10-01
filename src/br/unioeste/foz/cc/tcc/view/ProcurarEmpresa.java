@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,8 +22,6 @@ public class ProcurarEmpresa extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTextField tfBuscarPor;
 	private JTable tableResults;
-	private JCheckBox chckbxCdigoCvm;
-	private JCheckBox chckbxNomeDaEmpresa;
 	private JProgressBar progressBar;
 	private ProcurarEmpresaActionManager actionManager = new ProcurarEmpresaActionManager();
 	private JButton btnCarregar;
@@ -56,7 +53,7 @@ public class ProcurarEmpresa extends JFrame implements ActionListener {
 	public ProcurarEmpresa() {
 		setTitle("Buscar Empresa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 583, 360);
+		setBounds(100, 100, 687, 463);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -67,7 +64,7 @@ public class ProcurarEmpresa extends JFrame implements ActionListener {
 		contentPane.add(lblBuscarPor);
 
 		tfBuscarPor = new JTextField();
-		tfBuscarPor.setBounds(106, 18, 450, 20);
+		tfBuscarPor.setBounds(106, 18, 555, 20);
 		contentPane.add(tfBuscarPor);
 		tfBuscarPor.setColumns(10);
 
@@ -79,63 +76,61 @@ public class ProcurarEmpresa extends JFrame implements ActionListener {
 		tableResults.setModel(tbModel);
 		tableResults.setBounds(344, 57, -333, 260);
 		scrollResults = new JScrollPane();
-		scrollResults.setSize(337, 275);
+		scrollResults.setSize(441, 372);
 		scrollResults.setLocation(10, 42);
 		scrollResults.setViewportView(tableResults);
 		tableResults.setAutoCreateRowSorter(true);
 		contentPane.add(scrollResults);
 		contentPane.add(tableResults.getTableHeader());
 
-		JPanel panelOpcoes = new JPanel();
-		panelOpcoes.setBorder(new TitledBorder(null, "Op\u00E7\u00F5es",
-				TitledBorder.RIGHT, TitledBorder.TOP, null, null));
-		panelOpcoes.setBounds(357, 49, 199, 113);
-		contentPane.add(panelOpcoes);
-		panelOpcoes.setLayout(null);
-
-		JLabel lblIncluir = new JLabel("Incluir:");
-		lblIncluir.setBounds(10, 11, 71, 14);
-		panelOpcoes.add(lblIncluir);
-
-		chckbxNomeDaEmpresa = new JCheckBox("Nome da Empresa");
-		chckbxNomeDaEmpresa.setBounds(46, 32, 147, 23);
-		panelOpcoes.add(chckbxNomeDaEmpresa);
-		chckbxNomeDaEmpresa.setSelected(true);
-
-		chckbxCdigoCvm = new JCheckBox("C\u00F3digo CVM");
-		chckbxCdigoCvm.setBounds(46, 58, 147, 23);
-		panelOpcoes.add(chckbxCdigoCvm);
-
-		JPanel panelAcoes = new JPanel();
-		panelAcoes.setBorder(new TitledBorder(null, "A\u00E7\u00F5es",
-				TitledBorder.RIGHT, TitledBorder.TOP, null, null));
-		panelAcoes.setBounds(357, 166, 200, 120);
-		contentPane.add(panelAcoes);
-		panelAcoes.setLayout(null);
+		JPanel panelBuscar = new JPanel();
+		panelBuscar.setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
+				TitledBorder.TOP, null, null));
+		panelBuscar.setBounds(461, 49, 200, 80);
+		contentPane.add(panelBuscar);
+		panelBuscar.setLayout(null);
 
 		btnBuscar = new JButton("Buscar");
 
-		btnBuscar.setBounds(10, 22, 89, 23);
+		btnBuscar.setBounds(38, 11, 124, 23);
 		btnBuscar.addActionListener(this);
-		panelAcoes.add(btnBuscar);
+		panelBuscar.add(btnBuscar);
 
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(101, 22, 89, 23);
-		panelAcoes.add(btnCancelar);
-
-		btnFechar = new JButton("Fechar");
-		btnFechar.setBounds(10, 90, 89, 23);
-		panelAcoes.add(btnFechar);
-
-		btnCarregar = new JButton("Carregar");
-		btnCarregar.setBounds(10, 56, 89, 23);
-		panelAcoes.add(btnCarregar);
+		btnCancelar.setBounds(38, 45, 124, 23);
+		panelBuscar.add(btnCancelar);
 
 		progressBar = new JProgressBar();
-		progressBar.setBounds(357, 297, 199, 20);
+		progressBar.setBounds(462, 394, 199, 20);
 		progressBar.setMaximum(100);
 		progressBar.setMinimum(0);
 		contentPane.add(progressBar);
+
+		JPanel panelCarregar = new JPanel();
+		panelCarregar.setBorder(new TitledBorder(null, "",
+				TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelCarregar.setBounds(461, 140, 200, 80);
+		contentPane.add(panelCarregar);
+		panelCarregar.setLayout(null);
+
+		btnCarregar = new JButton("Carregar");
+		btnCarregar.setBounds(38, 11, 124, 23);
+		panelCarregar.add(btnCarregar);
+
+		JButton btnCarregarTodos = new JButton("Carregar Todos");
+		btnCarregarTodos.setBounds(38, 45, 124, 23);
+		panelCarregar.add(btnCarregarTodos);
+
+		JPanel panelFechar = new JPanel();
+		panelFechar.setBorder(new TitledBorder(null, "", TitledBorder.LEADING,
+				TitledBorder.TOP, null, null));
+		panelFechar.setBounds(461, 231, 200, 80);
+		contentPane.add(panelFechar);
+		panelFechar.setLayout(null);
+
+		btnFechar = new JButton("Fechar");
+		btnFechar.setBounds(38, 28, 124, 23);
+		panelFechar.add(btnFechar);
 	}
 
 	public JTextField getTfBuscarPor() {
@@ -154,22 +149,6 @@ public class ProcurarEmpresa extends JFrame implements ActionListener {
 		this.tableResults = tableResults;
 	}
 
-	public JCheckBox getChckbxCdigoCvm() {
-		return chckbxCdigoCvm;
-	}
-
-	public void setChckbxCdigoCvm(JCheckBox chckbxCdigoCvm) {
-		this.chckbxCdigoCvm = chckbxCdigoCvm;
-	}
-
-	public JCheckBox getChckbxNomeDaEmpresa() {
-		return chckbxNomeDaEmpresa;
-	}
-
-	public void setChckbxNomeDaEmpresa(JCheckBox chckbxNomeDaEmpresa) {
-		this.chckbxNomeDaEmpresa = chckbxNomeDaEmpresa;
-	}
-
 	public JProgressBar getProgressBar() {
 		return progressBar;
 	}
@@ -186,10 +165,8 @@ public class ProcurarEmpresa extends JFrame implements ActionListener {
 			if (source.equals(btnBuscar)) {
 				progressBar.setValue(0);
 				tbModel.setRowCount(0);
-				actionManager.buscarEmpresa(
-						tfBuscarPor.getText(),
-						chckbxNomeDaEmpresa.isSelected(),
-						chckbxCdigoCvm.isSelected(), progressBar, tbModel);
+				actionManager.buscarEmpresa(tfBuscarPor.getText(), progressBar,
+						tbModel);
 			} else if (source.equals(btnCancelar)) {
 
 			} else if (source.equals(btnCarregar)) {

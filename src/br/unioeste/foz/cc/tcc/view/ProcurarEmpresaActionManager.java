@@ -10,8 +10,7 @@ import br.unioeste.foz.cc.tcc.uc.UCManterEmpresa;
 
 public class ProcurarEmpresaActionManager {
 
-	public void buscarEmpresa(String text, boolean nomeEmpresa,
-			boolean codigoCVM, JProgressBar progressBar,
+	public void buscarEmpresa(String text, JProgressBar progressBar,
 			DefaultTableModel tbModel) throws SQLException  {
 		
 		UCManterEmpresa ucManterEmpresa = new UCManterEmpresa();

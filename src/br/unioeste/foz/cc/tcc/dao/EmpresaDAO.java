@@ -175,8 +175,6 @@ public class EmpresaDAO {
 
 	public List<Empresa> obterTodosPorNome(String nome) throws SQLException {
 		ArrayList<Empresa> empresas = new ArrayList<Empresa>();
-		
-		System.out.println(nome);
 
 		ResultSet rs = queryMaker.selectWhere("empresa", "idempresa", "nome LIKE ?", nome);
 		empresas.add(obter(rs.getInt(1), false));
