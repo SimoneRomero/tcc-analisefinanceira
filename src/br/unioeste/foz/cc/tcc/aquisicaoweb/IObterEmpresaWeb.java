@@ -3,6 +3,7 @@ package br.unioeste.foz.cc.tcc.aquisicaoweb;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
+import java.util.List;
 
 import br.unioeste.foz.cc.tcc.aquisicaocvm.HashBackMap;
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
@@ -15,7 +16,7 @@ public interface IObterEmpresaWeb {
 			throws FailingHttpStatusCodeException, MalformedURLException,
 			IOException, ParseException;
 
-	public HashBackMap<Integer, Empresa> obterEmpresasListadas()
+	public List<Empresa> obterEmpresasListadas()
 			throws FailingHttpStatusCodeException, MalformedURLException,
 			IOException;
 

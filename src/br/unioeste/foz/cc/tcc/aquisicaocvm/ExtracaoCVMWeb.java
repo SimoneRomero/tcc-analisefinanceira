@@ -91,16 +91,16 @@ public class ExtracaoCVMWeb implements IObterEmpresaWeb {
 		return relatorios;
 	}
 
-	public HashBackMap<Integer, Empresa> obterEmpresasListadas()
+	public List<Empresa> obterEmpresasListadas()
 			throws FailingHttpStatusCodeException, MalformedURLException,
 			IOException {
 
-		HashBackMap<Integer, Empresa> empresas = new HashBackMap<Integer, Empresa>();
+		List<Empresa> empresas = new ArrayList<Empresa>();
 
 		for (char letra = '0'; letra <= 'Z'; letra++) {
 			if (!((letra >= '0' && letra <= '9') || (letra >= 'A' && letra <= 'Z')))
 				continue;
-			empresas.putAll(parserCVMWeb.obterEmpresasListadas(clienteWeb
+			empresas.addAll(parserCVMWeb.obterEmpresasListadas(clienteWeb
 					.obterPagina(urlListaEmpresas + letra + "&idioma=pt-br")));
 		}
 		return empresas;

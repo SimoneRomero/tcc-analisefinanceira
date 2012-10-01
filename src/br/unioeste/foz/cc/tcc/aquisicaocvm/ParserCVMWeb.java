@@ -17,6 +17,7 @@ import br.unioeste.foz.cc.tcc.model.empresa.SituacaoEmissor;
 import br.unioeste.foz.cc.tcc.model.empresa.SituacaoRegCVM;
 import br.unioeste.foz.cc.tcc.model.empresa.TipoParticipante;
 
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -39,7 +40,8 @@ public class ParserCVMWeb {
 		java.util.Collections.reverse(elements);
 		for (HtmlElement li : elements) {
 			String date = li.getElementsByTagName("a").get(0).getTextContent();
-			date = date.substring(date.lastIndexOf("/") + 1, date.indexOf("-") - 1);
+			date = date.substring(date.lastIndexOf("/") + 1,
+					date.indexOf("-") - 1);
 
 			if (Integer.valueOf(date) > 2009) {
 
@@ -96,29 +98,36 @@ public class ParserCVMWeb {
 		return empresa;
 	}
 
-	public HashBackMap<Integer, Empresa> obterEmpresasListadas(HtmlPage pagina) {
+	public List<Empresa> obterEmpresasListadas(HtmlPage pagina) {
 
-		HashBackMap<Integer, Empresa> empresas = new HashBackMap<Integer, Empresa>();
+		List<Empresa> empresas = new ArrayList<Empresa>();
 
-		HtmlTable htable = pagina
-				.getHtmlElementById("ctl00_contentPlaceHolderConteudo_BuscaNomeEmpresa1_grdEmpresa_ctl01");
+		HtmlTable htable;
+		
+		try {
+			htable = pagina
+					.getHtmlElementById("ctl00_contentPlaceHolderConteudo_BuscaNomeEmpresa1_grdEmpresa_ctl01");
+		} catch (ElementNotFoundException e) {
+			return empresas;
+		}
 
 		for (HtmlTableRow hr : htable.getBodies().get(0).getRows()) {
-			empresas.put(Integer.valueOf(hr
+			int codCVM = Integer.valueOf(hr
 					.getCells()
 					.get(0)
 					.asXml()
 					.substring(
 							hr.getCells().get(0).asXml().lastIndexOf("=") + 1,
-							hr.getCells().get(0).asXml().lastIndexOf("\""))),
-					new Empresa(hr.getCells().get(0).asText()));
+							hr.getCells().get(0).asXml().lastIndexOf("\"")));
+			empresas.add(new Empresa(hr.getCells().get(0).asText(), codCVM));
 		}
 
 		return empresas;
 	}
 
 	public int obterNumeroDocumento(String link) {
-		return Integer.valueOf(link.substring(link.indexOf("=") + 1, link.indexOf("&")));
+		return Integer.valueOf(link.substring(link.indexOf("=") + 1,
+				link.indexOf("&")));
 	}
 
 	private List<AtributoValor> obterAtributos(HtmlPage pagina, int coluna) {
