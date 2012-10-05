@@ -1,11 +1,7 @@
 package br.unioeste.foz.cc.tcc.view;
 
-import java.util.Calendar;
-
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.tree.DefaultMutableTreeNode;
 
 import br.unioeste.foz.cc.tcc.model.demonstracao.AtributoValor;
 import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
@@ -20,9 +16,14 @@ public class TabelaEmpresa extends JTable {
 		data = new DefaultTableModel();
 		setModel(data);
 		setCellSelectionEnabled(true);
-//		setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		// setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		setColumnSelectionAllowed(true);
 		setAutoCreateRowSorter(true);
+	}
+
+	@Override
+	public boolean isCellEditable(int rowIndex, int colIndex) {
+		return false; // Disallow the editing of any cell
 	}
 
 	public void setEmpresa(Empresa empresa, int ano, String atributos) {

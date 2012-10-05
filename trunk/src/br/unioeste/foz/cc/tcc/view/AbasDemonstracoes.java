@@ -9,11 +9,11 @@ import javax.swing.table.JTableHeader;
 
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
 
-public class Abas extends JTabbedPane {
+public class AbasDemonstracoes extends JTabbedPane {
 
 	private TabelaEmpresa tabelaEmpresa;
 
-	public Abas() {
+	public AbasDemonstracoes() {
 		super(JTabbedPane.TOP);
 	}
 
@@ -26,7 +26,7 @@ public class Abas extends JTabbedPane {
 	private JPanel createTable(Empresa empresa, int ano, String atributos) {
 
 		tabelaEmpresa = new TabelaEmpresa();
-		
+
 		tabelaEmpresa.setEmpresa(empresa, ano, atributos);
 
 		JPanel jp = new JPanel();

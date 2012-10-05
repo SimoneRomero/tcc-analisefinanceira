@@ -1,18 +1,26 @@
 package br.unioeste.foz.cc.tcc.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
-public class BarraMenu extends JMenuBar {
-	
-	public BarraMenu(){
+public class BarraMenu extends JMenuBar implements ActionListener {
+
+	private ArvoreEmpresas arvoreEmpresas;
+
+	public BarraMenu(ArvoreEmpresas arvoreEmpresas) {
 		super();
 		createBar();
+		this.arvoreEmpresas = arvoreEmpresas;
 	}
-	
-	private void createBar(){
+
+	private void createBar() {
 		JMenu mnArquivo = new JMenu("Arquivo");
 		add(mnArquivo);
 
@@ -67,10 +75,9 @@ public class BarraMenu extends JMenuBar {
 		JMenu mnOrdenarArvore = new JMenu("Ordenar \u00C1rvore");
 		mnEmpresas.add(mnOrdenarArvore);
 
-		JMenuItem mntmPorCodigoCvm = new JMenuItem("Codigo CVM");
-		mnOrdenarArvore.add(mntmPorCodigoCvm);
-
 		JMenuItem mntmRazaoSocial = new JMenuItem("Raz\u00E3o Social");
+		mntmRazaoSocial.addActionListener(this);
+		mntmRazaoSocial.setActionCommand("ordenar por razao");
 		mnOrdenarArvore.add(mntmRazaoSocial);
 
 		JMenu mnRelatorios = new JMenu("Relat\u00F3rios");
@@ -110,8 +117,14 @@ public class BarraMenu extends JMenuBar {
 		JMenuItem mntmSobre = new JMenuItem("Sobre");
 		mnAjuda.add(mntmSobre);
 	}
-	
-	
-	
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().equals("ordenar por razao")) {
+			arvoreEmpresas.setModel(new DefaultTreeModel(ArvoreEmpresas
+					.sortTree((DefaultMutableTreeNode) arvoreEmpresas
+							.getModel().getRoot())));
+		}
+
+	}
 }

@@ -32,14 +32,14 @@ public class UCObterInfosCVM {
 		return this.etWeb.obterEmpresa(codCVM);
 	}
 	
-	public void atualizarListadas() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException{
+	public void atualizarListadas() throws FailingHttpStatusCodeException, MalformedURLException, IOException, SQLException, ClassNotFoundException{
 		EmpresaListadaDAO listadaDAO = new EmpresaListadaDAO();
 		for(Empresa e : this.etWeb.obterEmpresasListadas()){
 			listadaDAO.inserir(e);
 		}
 	}
 	
-	public void atualizarEmpresas() throws FailingHttpStatusCodeException, MalformedURLException, SQLException, IOException, ParseException{
+	public void atualizarEmpresas() throws FailingHttpStatusCodeException, MalformedURLException, SQLException, IOException, ParseException, ClassNotFoundException{
 		EmpresaDAO empresaDAO = new EmpresaDAO();
 		
 		for(Empresa e : empresaDAO.obterTodos()){

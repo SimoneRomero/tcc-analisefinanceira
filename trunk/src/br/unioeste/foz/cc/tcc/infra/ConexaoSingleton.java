@@ -11,16 +11,16 @@ public class ConexaoSingleton {
 
 	private static Connection con;
 
-	public static Connection getInstance() throws SQLException, FileNotFoundException, IOException {
+	public static Connection getInstance() throws SQLException,
+			FileNotFoundException, IOException, ClassNotFoundException {
 		Properties properties = new Properties();
-		try {
-			properties.load(ConexaoSingleton.class.getResourceAsStream("dbconnection.properties"));
-			Class.forName(properties.getProperty("driver"));
-			con = DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("username"), properties.getProperty("password"));
-			return con;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			throw new SQLException(e.getMessage());
-		}
+		properties.load(ConexaoSingleton.class
+				.getResourceAsStream("dbconnection.properties"));
+		Class.forName(properties.getProperty("driver"));
+		con = DriverManager.getConnection(properties.getProperty("url"),
+				properties.getProperty("username"),
+				properties.getProperty("password"));
+		return con;
+
 	}
 }

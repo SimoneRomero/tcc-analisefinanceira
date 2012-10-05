@@ -1,10 +1,12 @@
 package br.unioeste.foz.cc.tcc.view;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JProgressBar;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,8 +15,8 @@ import br.unioeste.foz.cc.tcc.uc.UCManterEmpresa;
 
 public class ProcurarEmpresaActionManager {
 
-	public void buscarEmpresa(String text, JProgressBar progressBar,
-			DefaultTableModel tbModel) throws SQLException {
+	public void buscarEmpresa(String text, DefaultTableModel tbModel) throws SQLException,
+			FileNotFoundException, ClassNotFoundException, IOException {
 
 		UCManterEmpresa ucManterEmpresa = new UCManterEmpresa();
 
@@ -22,8 +24,6 @@ public class ProcurarEmpresaActionManager {
 		for (Empresa e : ucManterEmpresa.obterEmpresasListadas(text)) {
 			Object[] data = { e.getNome(), e.getCodigoCVM() };
 			tbModel.insertRow(row, data);
-			progressBar.setValue(row);
-
 			row++;
 		}
 
@@ -38,19 +38,25 @@ public class ProcurarEmpresaActionManager {
 	}
 
 	public List<Empresa> carregarEmpresas(JTable tableResults)
-			throws SQLException {
+			throws SQLException, FileNotFoundException, ClassNotFoundException,
+			IOException {
 
 		UCManterEmpresa ucManterEmpresa = new UCManterEmpresa();
 		List<Empresa> empresas = new ArrayList<Empresa>();
 
-		for (int i = tableResults.getSelectedRow(); i <= (tableResults
-				.getSelectedRow() + tableResults.getSelectedRowCount()); i++) {
+		DefaultListSelectionModel selectionModel = (DefaultListSelectionModel) tableResults
+				.getSelectionModel();
 
-			empresas.add(ucManterEmpresa.obterEmpresa((Integer) tableResults
-					.getModel().getValueAt(i, 2), false));
+		for (int i = 0; i < tableResults.getModel().getRowCount(); i++) {
+			if (selectionModel.isSelectedIndex(i)) {
+				empresas.add(ucManterEmpresa.obterEmpresa(
+						(Integer) tableResults.getModel().getValueAt(i, 1),
+						true));
+			}
+
 		}
+
 		return empresas;
 
 	}
-
 }

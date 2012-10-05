@@ -1,5 +1,7 @@
 package br.unioeste.foz.cc.tcc.dao;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -10,7 +12,7 @@ public class PaisDAO{
 
 	private QueryMakerSingleton queryMaker;
 
-	public PaisDAO() throws SQLException {
+	public PaisDAO() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 
