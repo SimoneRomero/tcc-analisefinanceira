@@ -1,5 +1,7 @@
 package br.unioeste.foz.cc.tcc.dao;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,11 +22,11 @@ public class EmpresaDAO {
 
 	private QueryMakerSingleton queryMaker;
 
-	public EmpresaDAO() throws SQLException {
+	public EmpresaDAO() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 
-	public int inserir(Empresa empresa) throws SQLException {
+	public int inserir(Empresa empresa) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 
 		try {
 			return existe(empresa);
@@ -119,7 +121,7 @@ public class EmpresaDAO {
 		queryMaker.deleteWhere("empresa", "idempresa = ?", empresa.getId());
 	}
 
-	public Empresa obter(int id, boolean isCodCVM) throws SQLException {
+	public Empresa obter(int id, boolean isCodCVM) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 
 		String coluna = "idempresa";
 		if (isCodCVM)
@@ -159,7 +161,7 @@ public class EmpresaDAO {
 		return queryMaker.selectSequence("idempresa");
 	}
 
-	public List<Empresa> obterTodos() throws SQLException {
+	public List<Empresa> obterTodos() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 		ArrayList<Empresa> empresas = new ArrayList<Empresa>();
 
 		ResultSet rs = queryMaker.select("empresa", "idempresa");
@@ -173,7 +175,7 @@ public class EmpresaDAO {
 
 	}
 
-	public List<Empresa> obterTodosPorNome(String nome) throws SQLException {
+	public List<Empresa> obterTodosPorNome(String nome) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 		ArrayList<Empresa> empresas = new ArrayList<Empresa>();
 
 		ResultSet rs = queryMaker.selectWhere("empresa", "idempresa", "nome LIKE ?", nome);
@@ -183,5 +185,10 @@ public class EmpresaDAO {
 			empresas.add(obter(rs.getInt(1), false));
 
 		return empresas;
+	}
+
+	public Empresa obter(String nome) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
+		ResultSet rs = queryMaker.selectWhere("empresa", "idempresa", "nome = ?", nome);
+		return obter(rs.getInt(1), false);
 	}
 }

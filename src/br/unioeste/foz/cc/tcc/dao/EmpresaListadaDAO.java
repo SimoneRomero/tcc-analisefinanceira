@@ -1,5 +1,7 @@
 package br.unioeste.foz.cc.tcc.dao;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ public class EmpresaListadaDAO{
 
 	private QueryMakerSingleton queryMaker;
 
-	public EmpresaListadaDAO() throws SQLException {
+	public EmpresaListadaDAO() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 

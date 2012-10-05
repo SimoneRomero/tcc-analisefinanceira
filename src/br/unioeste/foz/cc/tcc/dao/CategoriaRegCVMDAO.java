@@ -1,5 +1,7 @@
 package br.unioeste.foz.cc.tcc.dao;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -10,7 +12,7 @@ public class CategoriaRegCVMDAO {
 
 	private QueryMakerSingleton queryMaker;
 
-	public CategoriaRegCVMDAO() throws SQLException {
+	public CategoriaRegCVMDAO() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 

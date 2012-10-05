@@ -1,5 +1,7 @@
 package br.unioeste.foz.cc.tcc.dao;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,11 +15,11 @@ public class RelatorioAnualDAO {
 
 	private QueryMakerSingleton queryMaker;
 
-	public RelatorioAnualDAO() throws SQLException {
+	public RelatorioAnualDAO() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 
-	public int inserir(RelatorioAnual relatorioAnual, int idEmpresa) throws SQLException {
+	public int inserir(RelatorioAnual relatorioAnual, int idEmpresa) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 		String columns = "idrelatorioAnual, finalPeriodo, empresa_idempresa";
 
 		Object[] values = { getNextId(), relatorioAnual.getFinalPeriodo(), idEmpresa };
@@ -50,7 +52,7 @@ public class RelatorioAnualDAO {
 				relatorioAnual.getId());
 	}
 
-	public RelatorioAnual obter(int id) throws SQLException {
+	public RelatorioAnual obter(int id) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 		AtributoValorDAO atrDAO = new AtributoValorDAO();
 
 		ResultSet rs = queryMaker.selectAllWhere("relatorioAnual",
@@ -68,7 +70,7 @@ public class RelatorioAnualDAO {
 		return queryMaker.selectSequence("idrelatorioAnual");
 	}
 
-	public List<RelatorioAnual> obterRelatorios(int idEmpresa) throws SQLException {
+	public List<RelatorioAnual> obterRelatorios(int idEmpresa) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
 
 		List<RelatorioAnual> relatorios = new ArrayList<RelatorioAnual>();
 
