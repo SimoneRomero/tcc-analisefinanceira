@@ -28,16 +28,16 @@ public class AtributoValorDAO{
 	}
 
 	public void alterar(AtributoValor atributoValor) throws SQLException {
-		String[] columns = { "idatributo", "idrelatorioanual", "valor" };
+		
+		String[] columns = { "valor" };
 
-		Object[] values = { atributoValor.getIdAtributo(),
-				atributoValor.getIdRelatorioAnual(), atributoValor.getValor() };
+		Object[] values = { atributoValor.getValor() };
 
 		queryMaker.updateWhere(
 				"atributoValor",
 				columns,
-				"idatributo = ? and idrelatorioanual = "
-						+ atributoValor.getIdRelatorioAnual(), values,
+				"idatributo = ? and idrelatorioanual = '"
+						+ atributoValor.getIdRelatorioAnual() + "'", values,
 				atributoValor.getIdAtributo());
 	}
 

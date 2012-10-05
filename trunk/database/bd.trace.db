@@ -7939,3 +7939,27 @@ org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
 org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
 10-05 16:03:18 jdbc[2]: exception
 org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:02:45 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:04:47 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:11:40 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:20:00 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:20:00 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:20:00 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:20:00 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:35:36 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:35:37 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:35:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:35:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]
+10-05 20:35:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-169]

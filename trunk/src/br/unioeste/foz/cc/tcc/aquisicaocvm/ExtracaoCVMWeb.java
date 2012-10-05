@@ -17,11 +17,11 @@ import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 /**
- *
+ * 
  * @author Jhonny Mertz
- *
+ * 
  *         Classe para extração de dados a partir de um cliente web.
- *
+ * 
  */
 public class ExtracaoCVMWeb implements IObterEmpresaWeb {
 

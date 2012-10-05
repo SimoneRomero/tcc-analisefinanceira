@@ -1,5 +1,7 @@
 package br.unioeste.foz.cc.tcc.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
@@ -8,17 +10,25 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.swing.JComponent;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
 import br.unioeste.foz.cc.tcc.uc.UCManterEmpresa;
 
-public class ArvoreEmpresas extends JTree implements MouseListener{
+@SuppressWarnings("serial")
+public class ArvoreEmpresas extends JTree implements MouseListener,
+		ActionListener {
 
+	private JPopupMenu popup;
+	private JMenuItem mi;
 	protected DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(
 			"Empresas");
 
@@ -31,6 +41,15 @@ public class ArvoreEmpresas extends JTree implements MouseListener{
 		setModel(model);
 		this.abas = abas;
 		addMouseListener(this);
+
+		popup = new JPopupMenu();
+		mi = new JMenuItem("Remover");
+		mi.addActionListener(this);
+		mi.setActionCommand("remover");
+		popup.add(mi);
+		popup.setOpaque(true);
+		popup.setLightWeightPopupEnabled(true);
+
 	}
 
 	public void addEmpresa(List<Empresa> empresas) {
@@ -80,10 +99,16 @@ public class ArvoreEmpresas extends JTree implements MouseListener{
 		}
 	}
 
+	public void recolherTodos() {
+		for (int i = 0; i < getRowCount(); i++) {
+			collapseRow(i);
+		}
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -121,29 +146,32 @@ public class ArvoreEmpresas extends JTree implements MouseListener{
 				}
 			}
 		}
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (e.isPopupTrigger()) {
+			popup.show((JComponent) e.getSource(), e.getX(), e.getY());
+		}
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	/**
-	 * @param root of tree
+	 * @param root
+	 *            of tree
 	 * @return sorted elements alphabetically
 	 */
 	public static DefaultMutableTreeNode sortTree(DefaultMutableTreeNode root) {
@@ -151,11 +179,11 @@ public class ArvoreEmpresas extends JTree implements MouseListener{
 			DefaultMutableTreeNode node = (DefaultMutableTreeNode) root
 					.getChildAt(i);
 			String nt = node.getUserObject().toString();
-			for (int j=0; j<i; j++) {
+			for (int j = 0; j < i; j++) {
 				DefaultMutableTreeNode prevNode = (DefaultMutableTreeNode) root
-				.getChildAt(j);
+						.getChildAt(j);
 				String np = prevNode.getUserObject().toString();
-				if (nt.compareToIgnoreCase(np)<0) {
+				if (nt.compareToIgnoreCase(np) < 0) {
 					root.insert(node, j);
 					root.insert(prevNode, i);
 				}
@@ -165,6 +193,25 @@ public class ArvoreEmpresas extends JTree implements MouseListener{
 			}
 		}
 		return root;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		DefaultMutableTreeNode dmtn, node;
+
+		TreePath path = this.getSelectionPath();
+		dmtn = (DefaultMutableTreeNode) path.getLastPathComponent();
+		if (e.getActionCommand().equals("remover")) {
+			node = (DefaultMutableTreeNode) dmtn.getParent();
+			int nodeIndex = node.getIndex(dmtn); // declare an integer to hold
+													// the selected nodes index
+			dmtn.removeAllChildren(); // remove any children of selected node
+			node.remove(nodeIndex); // remove the selected node, retain its
+									// siblings
+			((DefaultTreeModel) this.getModel())
+					.nodeStructureChanged((TreeNode) dmtn);
+		}
+
 	}
 
 }

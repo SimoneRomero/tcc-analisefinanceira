@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+@SuppressWarnings("serial")
 public class EmpresasListadas extends JFrame implements ActionListener {
 
 	private JPanel contentPane;

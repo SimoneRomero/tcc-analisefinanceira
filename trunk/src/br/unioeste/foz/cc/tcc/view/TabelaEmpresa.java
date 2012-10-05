@@ -7,6 +7,7 @@ import br.unioeste.foz.cc.tcc.model.demonstracao.AtributoValor;
 import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
 
+@SuppressWarnings("serial")
 public class TabelaEmpresa extends JTable {
 
 	DefaultTableModel data;
@@ -39,8 +40,8 @@ public class TabelaEmpresa extends JTable {
 		for (AtributoValor av : raAno.getAtributos(atributos)) {
 			Object[] row = { av.getAtributo().getCodigo(),
 					av.getAtributo().getDescricao(), av.getValor(),
-					raAno1.getValorByCodigo(av.getAtributo().getCodigo()),
-					raAno2.getValorByCodigo(av.getAtributo().getCodigo()) };
+					raAno1.getValor(av.getAtributo().getCodigo()),
+					raAno2.getValor(av.getAtributo().getCodigo()) };
 			data.addRow(row);
 		}
 

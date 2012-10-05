@@ -9,14 +9,15 @@ import javax.swing.JSeparator;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+@SuppressWarnings("serial")
 public class BarraFerramentas extends JToolBar implements ActionListener {
 
-	private MainFrame mainFrame;
+	private ArvoreEmpresas arvoreEmpresas;
 	private BarraFerramentasActionManager actionManager;
 
-	public BarraFerramentas(MainFrame mainFrame) {
+	public BarraFerramentas(ArvoreEmpresas arvoreEmpresas) {
 		super();
-		this.mainFrame = mainFrame;
+		this.arvoreEmpresas = arvoreEmpresas;
 		this.actionManager = new BarraFerramentasActionManager();
 		createMenuBar();
 	}
@@ -67,9 +68,9 @@ public class BarraFerramentas extends JToolBar implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		try {
 			if (e.getActionCommand().equals("procurar")) {
-				actionManager.procurar(mainFrame.getArvoreEmpresas());
+				actionManager.procurar(arvoreEmpresas);
 			} else if (e.getActionCommand().equals("listar")) {
-				actionManager.listar(mainFrame.getArvoreEmpresas());
+				actionManager.listar(arvoreEmpresas);
 			} else if (e.getActionCommand().equals("importar")) {
 
 			} else if (e.getActionCommand().equals("exportar")) {
