@@ -4,8 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.tree.DefaultMutableTreeNode;
-
 public class RelatorioAnual {
 
 	private int id;
@@ -51,6 +49,18 @@ public class RelatorioAnual {
 			return 0;
 		} catch (NumberFormatException e) {
 			return 0;
+		}
+	}
+	
+	public String getValor(String codigo) {
+		try {
+			for (AtributoValor av : this.atributos) {
+				if (av.getAtributo().getCodigo().equals(codigo))
+					return av.getValor();
+			}
+			return null;
+		} catch (NumberFormatException e) {
+			return null;
 		}
 	}
 

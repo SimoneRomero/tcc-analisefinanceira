@@ -16,6 +16,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+@SuppressWarnings("serial")
 public class ProcurarEmpresa extends JFrame implements ActionListener {
 
 	private JPanel contentPane;

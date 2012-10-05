@@ -10,13 +10,16 @@ import javax.swing.JSeparator;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
+@SuppressWarnings("serial")
 public class BarraMenu extends JMenuBar implements ActionListener {
 
 	private ArvoreEmpresas arvoreEmpresas;
+	protected BarraMenuActionManager actionManager;
 
 	public BarraMenu(ArvoreEmpresas arvoreEmpresas) {
 		super();
 		createBar();
+		actionManager = new BarraMenuActionManager();
 		this.arvoreEmpresas = arvoreEmpresas;
 	}
 
@@ -72,13 +75,26 @@ public class BarraMenu extends JMenuBar implements ActionListener {
 		JMenu mnEmpresas = new JMenu("Empresas");
 		add(mnEmpresas);
 
-		JMenu mnOrdenarArvore = new JMenu("Ordenar \u00C1rvore");
-		mnEmpresas.add(mnOrdenarArvore);
+		JMenu mnArvoreEmpresas = new JMenu("\u00C1rvore");
+		mnEmpresas.add(mnArvoreEmpresas);
+
+		JMenu mnOrdenar = new JMenu("Ordenar");
+		mnArvoreEmpresas.add(mnOrdenar);
 
 		JMenuItem mntmRazaoSocial = new JMenuItem("Raz\u00E3o Social");
 		mntmRazaoSocial.addActionListener(this);
 		mntmRazaoSocial.setActionCommand("ordenar por razao");
-		mnOrdenarArvore.add(mntmRazaoSocial);
+		mnOrdenar.add(mntmRazaoSocial);
+
+		JMenuItem mnExpandir = new JMenuItem("Expandir nós");
+		mnExpandir.addActionListener(this);
+		mnExpandir.setActionCommand("expandir");
+		mnArvoreEmpresas.add(mnExpandir);
+
+		JMenuItem mnRecolher = new JMenuItem("Recolher nós");
+		mnRecolher.addActionListener(this);
+		mnRecolher.setActionCommand("recolher");
+		mnArvoreEmpresas.add(mnRecolher);
 
 		JMenu mnRelatorios = new JMenu("Relat\u00F3rios");
 		add(mnRelatorios);
@@ -99,15 +115,26 @@ public class BarraMenu extends JMenuBar implements ActionListener {
 		add(mnCvm);
 
 		JMenuItem mntmEmpresasListadas = new JMenuItem("Empresas Listadas");
+		mntmEmpresasListadas.addActionListener(this);
+		mntmEmpresasListadas.setActionCommand("listar");
 		mnCvm.add(mntmEmpresasListadas);
 
 		JMenuItem mntmProcurarEmpresa = new JMenuItem("Procurar Empresa");
+		mntmProcurarEmpresa.addActionListener(this);
+		mntmProcurarEmpresa.setActionCommand("listar");
 		mnCvm.add(mntmProcurarEmpresa);
+		
+		JMenuItem mntmAtualizarEmpresas = new JMenuItem("Atualizar Informações");
+		mntmAtualizarEmpresas.addActionListener(this);
+		mntmAtualizarEmpresas.setActionCommand("atualizar empresas");
+		mnCvm.add(mntmAtualizarEmpresas);
 
 		JMenu mnAjuda = new JMenu("Ajuda");
 		add(mnAjuda);
 
 		JMenuItem mntmTopicosDeAjuda = new JMenuItem("T\u00F3picos de Ajuda");
+		mntmTopicosDeAjuda.setActionCommand("help");
+		mntmTopicosDeAjuda.addActionListener(this);
 		mnAjuda.add(mntmTopicosDeAjuda);
 
 		JMenuItem mntmVerificarAtualizacoes = new JMenuItem(
@@ -120,10 +147,28 @@ public class BarraMenu extends JMenuBar implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("ordenar por razao")) {
-			arvoreEmpresas.setModel(new DefaultTreeModel(ArvoreEmpresas
-					.sortTree((DefaultMutableTreeNode) arvoreEmpresas
-							.getModel().getRoot())));
+		try {
+			if (e.getActionCommand().equals("ordenar por razao")) {
+				arvoreEmpresas.setModel(new DefaultTreeModel(ArvoreEmpresas
+						.sortTree((DefaultMutableTreeNode) arvoreEmpresas
+								.getModel().getRoot())));
+			} else if (e.getActionCommand().equals("procurar")) {
+				actionManager.procurar(arvoreEmpresas);
+			} else if (e.getActionCommand().equals("listar")) {
+				actionManager.listar(arvoreEmpresas);
+			} else if (e.getActionCommand().equals("expandir")) {
+				arvoreEmpresas.expandirTodos();
+			} else if (e.getActionCommand().equals("recolher")) {
+				arvoreEmpresas.recolherTodos();
+			}
+			else if (e.getActionCommand().equals("help")) {
+				actionManager.helper();
+			}
+			else if (e.getActionCommand().equals("atualizar empresas")) {
+				actionManager.atualizarEmpresas();
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 
 	}

@@ -22,11 +22,13 @@ public class EmpresaDAO {
 
 	private QueryMakerSingleton queryMaker;
 
-	public EmpresaDAO() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
+	public EmpresaDAO() throws SQLException, FileNotFoundException,
+			ClassNotFoundException, IOException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 
-	public int inserir(Empresa empresa) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
+	public int inserir(Empresa empresa) throws SQLException,
+			FileNotFoundException, ClassNotFoundException, IOException {
 
 		try {
 			return existe(empresa);
@@ -87,7 +89,17 @@ public class EmpresaDAO {
 		return rs.getInt(1);
 	}
 
-	public void alterar(Empresa empresa) throws SQLException {
+	public void alterar(Empresa empresa) throws SQLException,
+			FileNotFoundException, ClassNotFoundException, IOException {
+
+		empresa.setId(existe(empresa));
+
+		PaisDAO paisDAO = new PaisDAO();
+		SituacaoRegCVMDAO situacaoRegCVMDAO = new SituacaoRegCVMDAO();
+		TipoParticipanteDAO tipoDAO = new TipoParticipanteDAO();
+		CategoriaRegCVMDAO categoriaDAO = new CategoriaRegCVMDAO();
+		SituacaoEmissorDAO situacaoEmissorDAO = new SituacaoEmissorDAO();
+		RelatorioAnualDAO relatorioAnualDAO = new RelatorioAnualDAO();
 
 		String[] columns = { "codigoCVM", "nome", "cnpj", "site",
 				"nomeAnterior", "dataAlteracaoNome", "dataConstituicao",
@@ -98,30 +110,42 @@ public class EmpresaDAO {
 				"SituacaoRegCVM_idSituacaoRegCVM",
 				"CategoriaRegCVM_idCategoriaRegCVM" };
 
-		Object[] values = { empresa.getCodigoCVM(), empresa.getNome(),
-				empresa.getCnpj(), empresa.getSite(),
-				empresa.getNomeAnterior(), empresa.getDataAlteracaoNome(),
+		Object[] values = {
+				empresa.getCodigoCVM(),
+				empresa.getNome(),
+				empresa.getCnpj(),
+				empresa.getSite(),
+				empresa.getNomeAnterior(),
+				empresa.getDataAlteracaoNome(),
 				empresa.getDataConstituicao(),
 				empresa.getRegistro().getDataRegCVM(),
 				empresa.getDataInicioCVM(),
 				empresa.getRegistro().getDataRegCategoria(),
 				empresa.getRegistro().getDataInicioSituacao(),
 				empresa.getSetor().getAtividade(),
-				empresa.getSetor().getDescricao(), empresa.getPais().getId(),
-				empresa.getRegistro().getTipo().getId(),
-				empresa.getRegistro().getSituacaoEmissor().getId(),
-				empresa.getRegistro().getSituacaoRegCVM().getId(),
-				empresa.getRegistro().getCategoriaCVM().getId() };
+				empresa.getSetor().getDescricao(),
+				paisDAO.inserir(empresa.getPais()),
+				tipoDAO.inserir(empresa.getRegistro().getTipo()),
+				situacaoEmissorDAO.inserir(empresa.getRegistro()
+						.getSituacaoEmissor()),
+				situacaoRegCVMDAO.inserir(empresa.getRegistro()
+						.getSituacaoRegCVM()),
+				categoriaDAO.inserir(empresa.getRegistro().getCategoriaCVM()) };
 
 		queryMaker.updateWhere("empresa", columns, "idempresa = ?", values,
 				empresa.getId());
+
+		for (RelatorioAnual ra : empresa.getRelatorios()) {
+			relatorioAnualDAO.alterar(ra, empresa.getId());
+		}
 	}
 
 	public void remover(Empresa empresa) throws SQLException {
 		queryMaker.deleteWhere("empresa", "idempresa = ?", empresa.getId());
 	}
 
-	public Empresa obter(int id, boolean isCodCVM) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
+	public Empresa obter(int id, boolean isCodCVM) throws SQLException,
+			FileNotFoundException, ClassNotFoundException, IOException {
 
 		String coluna = "idempresa";
 		if (isCodCVM)
@@ -161,7 +185,8 @@ public class EmpresaDAO {
 		return queryMaker.selectSequence("idempresa");
 	}
 
-	public List<Empresa> obterTodos() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
+	public List<Empresa> obterTodos() throws SQLException,
+			FileNotFoundException, ClassNotFoundException, IOException {
 		ArrayList<Empresa> empresas = new ArrayList<Empresa>();
 
 		ResultSet rs = queryMaker.select("empresa", "idempresa");
@@ -175,10 +200,12 @@ public class EmpresaDAO {
 
 	}
 
-	public List<Empresa> obterTodosPorNome(String nome) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
+	public List<Empresa> obterTodosPorNome(String nome) throws SQLException,
+			FileNotFoundException, ClassNotFoundException, IOException {
 		ArrayList<Empresa> empresas = new ArrayList<Empresa>();
 
-		ResultSet rs = queryMaker.selectWhere("empresa", "idempresa", "nome LIKE ?", nome);
+		ResultSet rs = queryMaker.selectWhere("empresa", "idempresa",
+				"nome LIKE ?", nome);
 		empresas.add(obter(rs.getInt(1), false));
 
 		while (rs.next())
@@ -187,8 +214,10 @@ public class EmpresaDAO {
 		return empresas;
 	}
 
-	public Empresa obter(String nome) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
-		ResultSet rs = queryMaker.selectWhere("empresa", "idempresa", "nome = ?", nome);
+	public Empresa obter(String nome) throws SQLException,
+			FileNotFoundException, ClassNotFoundException, IOException {
+		ResultSet rs = queryMaker.selectWhere("empresa", "idempresa",
+				"nome = ?", nome);
 		return obter(rs.getInt(1), false);
 	}
 }

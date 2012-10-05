@@ -37,14 +37,31 @@ public class RelatorioAnualDAO {
 		return idRelatorio;
 	}
 
-	public void alterar(RelatorioAnual relatorioAnual) throws SQLException {
-		String[] columns = { "idrelatorioAnual", "finalPeriodo" };
+	public void alterar(RelatorioAnual relatorioAnual, int idEmpresa) throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
+		
+		relatorioAnual.setId(existe(relatorioAnual, idEmpresa));
+		
+		String[] columns = { "finalPeriodo" };
 
-		Object[] values = { relatorioAnual.getId(),
-				relatorioAnual.getFinalPeriodo() };
+		Object[] values = { relatorioAnual.getFinalPeriodo() };
 
 		queryMaker.updateWhere("relatorioAnual", columns,
 				"idrelatorioAnual = ?", values, relatorioAnual.getId());
+		
+		AtributoValorDAO atrDAO = new AtributoValorDAO();
+		AtributoDAO aDAO = new AtributoDAO();
+		for(AtributoValor atr : relatorioAnual.getAtributoValor()){
+			atr.setIdAtributo(aDAO.inserir(atr.getAtributo()));
+			atr.setIdRelatorioAnual(relatorioAnual.getId());
+			atrDAO.alterar(atr);
+		}
+		
+	}
+
+	protected int existe(RelatorioAnual relatorioAnual, int idEmpresa) throws SQLException {
+		ResultSet rs = queryMaker.selectWhere("relatorioAnual", "idrelatorioAnual",
+				"finalPeriodo = ? and " + "empresa_idempresa = '" + idEmpresa + "'", relatorioAnual.getFinalPeriodo());
+		return rs.getInt(1);	
 	}
 
 	public void remover(RelatorioAnual relatorioAnual) throws SQLException {

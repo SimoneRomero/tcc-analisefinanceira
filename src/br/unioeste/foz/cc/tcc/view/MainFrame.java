@@ -1,7 +1,6 @@
 package br.unioeste.foz.cc.tcc.view;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,8 +12,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
-import java.awt.BorderLayout;
 
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame implements ActionListener {
 	JDesktopPane desktop;
 	private ArvoreEmpresas arvoreEmpresas;
@@ -28,7 +27,6 @@ public class MainFrame extends JFrame implements ActionListener {
 		// Make the big window be indented 50 pixels from each edge
 		// of the screen.
 		int inset = 50;
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds(inset, inset, 819, 668);
 
 		// Set up the GUI.
@@ -61,7 +59,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	protected JToolBar createToolBar() {
 
-		barraFerramentas = new BarraFerramentas(this);
+		barraFerramentas = new BarraFerramentas(arvoreEmpresas);
 
 		return barraFerramentas;
 

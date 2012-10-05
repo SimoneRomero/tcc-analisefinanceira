@@ -10,25 +10,32 @@ import java.util.List;
 import br.unioeste.foz.cc.tcc.infra.QueryMakerSingleton;
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
 
-public class EmpresaListadaDAO{
+public class EmpresaListadaDAO {
 
 	private QueryMakerSingleton queryMaker;
 
-	public EmpresaListadaDAO() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
+	public EmpresaListadaDAO() throws SQLException, FileNotFoundException,
+			ClassNotFoundException, IOException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 
 	public int inserir(Empresa empresa) throws SQLException {
 
-		try{ return existe(empresa);}
-		catch (SQLException e) {}
+		try {
+			EmpresaDAO eDAO = new EmpresaDAO();
+			return eDAO.existe(empresa);
+		} catch (Exception e) {
+		}
+
+		try {
+			return existe(empresa);
+		} catch (SQLException e) {
+		}
 
 		String columns = "idempresalistada, codigoCVM, nome";
 
-		Object[] values = { getNextId(),
-				empresa.getCodigoCVM(),
-				empresa.getNome()
-				};
+		Object[] values = { getNextId(), empresa.getCodigoCVM(),
+				empresa.getNome() };
 
 		int idEmpresa = queryMaker.insert("empresalistada", columns, values);
 
@@ -36,9 +43,9 @@ public class EmpresaListadaDAO{
 	}
 
 	public int existe(Empresa empresa) throws SQLException {
-			ResultSet rs = queryMaker.selectWhere("empresalistada", "idempresalistada",
-					"codigoCVM = ?", empresa.getCodigoCVM());
-			return rs.getInt(1);
+		ResultSet rs = queryMaker.selectWhere("empresalistada",
+				"idempresalistada", "codigoCVM = ?", empresa.getCodigoCVM());
+		return rs.getInt(1);
 	}
 
 	public void remover(Empresa empresa) throws SQLException {
@@ -49,12 +56,12 @@ public class EmpresaListadaDAO{
 	public Empresa obter(int id, boolean isCodCVM) throws SQLException {
 
 		String coluna = "idempresalistada";
-		if(isCodCVM)
+		if (isCodCVM)
 			coluna = "codigocvm";
 
-		ResultSet result = queryMaker.selectAllWhere("empresalistada",
-				coluna + " = ?", id);
-		
+		ResultSet result = queryMaker.selectAllWhere("empresalistada", coluna
+				+ " = ?", id);
+
 		Empresa empresa = new Empresa(result.getString(2), result.getInt(3));
 		empresa.setId(result.getInt(1));
 
@@ -68,22 +75,22 @@ public class EmpresaListadaDAO{
 	public List<Empresa> obterTodos() throws SQLException {
 		ArrayList<Empresa> empresas = new ArrayList<Empresa>();
 
-		ResultSet rs = queryMaker.select("empresalistada","idempresalistada");
+		ResultSet rs = queryMaker.select("empresalistada", "idempresalistada");
 
 		empresas.add(obter(rs.getInt(1), false));
 
-		while(rs.next())
+		while (rs.next())
 			empresas.add(obter(rs.getInt(1), false));
 
 		return empresas;
-
 
 	}
 
 	public List<Empresa> obterTodosPorNome(String nome) throws SQLException {
 		ArrayList<Empresa> empresas = new ArrayList<Empresa>();
 
-		ResultSet rs = queryMaker.selectWhere("empresalistada", "idempresalistada", "nome LIKE ?", nome);
+		ResultSet rs = queryMaker.selectWhere("empresalistada",
+				"idempresalistada", "nome LIKE ?", nome);
 		empresas.add(obter(rs.getInt(1), false));
 
 		while (rs.next())

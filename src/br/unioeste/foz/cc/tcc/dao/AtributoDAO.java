@@ -38,9 +38,12 @@ public class AtributoDAO {
 	}
 
 	public void alterar(Atributo atributo) throws SQLException {
-		String[] columns = { "idatributo", "descricao", "codigo" };
+		
+		atributo.setId(inserir(atributo));
+		
+		String[] columns = {"descricao", "codigo" };
 
-		Object[] values = { atributo.getId(), atributo.getDescricao(),
+		Object[] values = { atributo.getDescricao(),
 				atributo.getCodigo() };
 
 		queryMaker.updateWhere("atributo", columns, "idatributo = ?", values,

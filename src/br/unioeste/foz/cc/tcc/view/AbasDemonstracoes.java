@@ -9,6 +9,7 @@ import javax.swing.table.JTableHeader;
 
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
 
+@SuppressWarnings("serial")
 public class AbasDemonstracoes extends JTabbedPane {
 
 	private TabelaEmpresa tabelaEmpresa;
@@ -18,7 +19,7 @@ public class AbasDemonstracoes extends JTabbedPane {
 	}
 
 	public void addAba(String atributos, int ano, Empresa empresa) {
-		addTab(empresa.getNome() + " - " + atributos, null,
+		addTab(empresa.getNome() + " - " + ano + " - " + atributos, null,
 				createTable(empresa, ano, atributos), null);
 		setTabComponentAt(getTabCount() - 1, new ButtonTabComponent(this));
 	}
