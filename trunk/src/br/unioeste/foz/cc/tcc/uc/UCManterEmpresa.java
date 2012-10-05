@@ -21,12 +21,18 @@ public class UCManterEmpresa {
 	public List<Empresa> obterEmpresasListadas(String nome) throws SQLException {
 		EmpresaDAO empresaDAO = new EmpresaDAO();
 		EmpresaListadaDAO listadaDAO = new EmpresaListadaDAO();
-		
+
 		nome = "%" + nome.toUpperCase() + "%";
-		
+
 		List<Empresa> empresas = empresaDAO.obterTodosPorNome(nome);
 		empresas.addAll(listadaDAO.obterTodosPorNome(nome));
 		return empresas;
+	}
+
+	public Empresa obterEmpresa(Integer id, boolean isCodCVM) throws SQLException {
+		EmpresaDAO empresaDAO = new EmpresaDAO();
+		return empresaDAO.obter(id, isCodCVM);
+
 	}
 
 }

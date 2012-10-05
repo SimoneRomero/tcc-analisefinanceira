@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 public class RelatorioAnual {
 
 	private int id;
@@ -86,6 +88,29 @@ public class RelatorioAnual {
 	 */
 	public int getId() {
 		return id;
+	}
+
+	public List<AtributoValor> getAtributos(String atributos) {
+		
+		char pattern;
+
+		if (atributos.equals("Ativo")) {
+			pattern = '1';
+		} else if (atributos.equals("Passivo")) {
+			pattern = '2';
+		} else {
+			pattern = '3';
+		}
+		
+		List<AtributoValor> atrs = new ArrayList<AtributoValor>();
+		
+		for(AtributoValor av : this.atributos){
+			if(av.getAtributo().getCodigo().charAt(0) == pattern){
+				atrs.add(av);
+			}
+		}
+
+		return atrs;
 	}
 
 }

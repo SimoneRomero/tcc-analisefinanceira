@@ -1,5 +1,6 @@
 package br.unioeste.foz.cc.tcc.model.empresa;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -164,6 +165,20 @@ public class Empresa {
 	 */
 	public int getId() {
 		return id;
+	}
+	
+	
+	public RelatorioAnual getRelatorio(int ano){
+		
+		Calendar calendar = Calendar.getInstance();
+		
+		for(RelatorioAnual ra : relatorios){
+			calendar.setTime(ra.getFinalPeriodo());
+			
+			if(calendar.get(Calendar.YEAR) == ano)
+				return ra;
+		}
+		return null;
 	}
 
 }
