@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -32,8 +31,6 @@ public class ButtonTabComponent extends JPanel {
 	public ButtonTabComponent(final JTabbedPane pane) {
 		// unset default FlowLayout' gaps
 		super(new FlowLayout(FlowLayout.LEFT, 0, 0));
-		setFont(new Font("HandelGothic BT", Font.PLAIN, 11));
-		pane.setFont(new Font("HandelGothic BT", Font.PLAIN, 11));
 		if (pane == null) {
 			throw new NullPointerException("TabbedPane is null");
 		}
@@ -72,7 +69,6 @@ public class ButtonTabComponent extends JPanel {
 			setContentAreaFilled(false);
 			// No need to be focusable
 			setFocusable(false);
-			setFont(new Font("HandelGothic BT", Font.PLAIN, 12));
 			setBorder(BorderFactory.createEtchedBorder());
 			setBorderPainted(false);
 			// Making nice rollover effect

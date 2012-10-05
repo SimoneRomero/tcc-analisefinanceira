@@ -52,7 +52,7 @@ public class ProcurarEmpresa extends JFrame implements ActionListener {
 	 */
 	public ProcurarEmpresa() {
 		setTitle("Buscar Empresa");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 687, 463);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -91,13 +91,13 @@ public class ProcurarEmpresa extends JFrame implements ActionListener {
 		panelBuscar.setLayout(null);
 
 		btnBuscar = new JButton("Buscar");
-
 		btnBuscar.setBounds(38, 11, 124, 23);
 		btnBuscar.addActionListener(this);
 		panelBuscar.add(btnBuscar);
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(38, 45, 124, 23);
+		btnCancelar.addActionListener(this);
 		panelBuscar.add(btnCancelar);
 
 		progressBar = new JProgressBar();
@@ -115,6 +115,7 @@ public class ProcurarEmpresa extends JFrame implements ActionListener {
 
 		btnCarregar = new JButton("Carregar");
 		btnCarregar.setBounds(38, 11, 124, 23);
+		btnCarregar.addActionListener(this);
 		panelCarregar.add(btnCarregar);
 
 		JButton btnCarregarTodos = new JButton("Carregar Todos");
@@ -130,6 +131,7 @@ public class ProcurarEmpresa extends JFrame implements ActionListener {
 
 		btnFechar = new JButton("Fechar");
 		btnFechar.setBounds(38, 28, 124, 23);
+		btnFechar.addActionListener(this);
 		panelFechar.add(btnFechar);
 	}
 
@@ -168,11 +170,11 @@ public class ProcurarEmpresa extends JFrame implements ActionListener {
 				actionManager.buscarEmpresa(tfBuscarPor.getText(), progressBar,
 						tbModel);
 			} else if (source.equals(btnCancelar)) {
-
+				dispose();
 			} else if (source.equals(btnCarregar)) {
-
+//				mainFrame.addEmpresa(actionManager.carregarEmpresas(tableResults));
 			} else if (source.equals(btnFechar)) {
-
+				dispose();
 			}
 		} catch (Exception exception) {
 			// TODO: handle exception
