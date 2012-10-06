@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.aquisicaocvm;
+package br.unioeste.foz.cc.tcc.web.cvm;
 
 import java.sql.Date;
 import java.text.ParseException;

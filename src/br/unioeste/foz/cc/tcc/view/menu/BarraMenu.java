@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.view;
+package br.unioeste.foz.cc.tcc.view.menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+
+import br.unioeste.foz.cc.tcc.view.arvore.ArvoreEmpresas;
 
 @SuppressWarnings("serial")
 public class BarraMenu extends JMenuBar implements ActionListener {

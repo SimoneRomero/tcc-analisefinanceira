@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.aquisicaocvm;
+package br.unioeste.foz.cc.tcc.web.cvm;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -8,10 +8,10 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import br.unioeste.foz.cc.tcc.aquisicaoweb.ClienteWeb;
-import br.unioeste.foz.cc.tcc.aquisicaoweb.IObterEmpresaWeb;
 import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
+import br.unioeste.foz.cc.tcc.web.ClienteWeb;
+import br.unioeste.foz.cc.tcc.web.IObterEmpresaWeb;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;

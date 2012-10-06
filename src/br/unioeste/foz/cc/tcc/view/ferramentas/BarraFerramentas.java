@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.view;
+package br.unioeste.foz.cc.tcc.view.ferramentas;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
+
+import br.unioeste.foz.cc.tcc.view.arvore.ArvoreEmpresas;
 
 @SuppressWarnings("serial")
 public class BarraFerramentas extends JToolBar implements ActionListener {

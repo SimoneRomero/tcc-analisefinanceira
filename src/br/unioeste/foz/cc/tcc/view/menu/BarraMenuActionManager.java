@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.view;
+package br.unioeste.foz.cc.tcc.view.menu;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,6 +11,9 @@ import javax.swing.JFrame;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 
 import br.unioeste.foz.cc.tcc.uc.UCObterInfosCVM;
+import br.unioeste.foz.cc.tcc.view.arvore.ArvoreEmpresas;
+import br.unioeste.foz.cc.tcc.view.cvm.EmpresasListadas;
+import br.unioeste.foz.cc.tcc.view.cvm.ProcurarEmpresa;
 
 public class BarraMenuActionManager {
 	

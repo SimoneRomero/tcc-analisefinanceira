@@ -1,8 +1,12 @@
-package br.unioeste.foz.cc.tcc.view;
+package br.unioeste.foz.cc.tcc.view.ferramentas;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+
+import br.unioeste.foz.cc.tcc.view.arvore.ArvoreEmpresas;
+import br.unioeste.foz.cc.tcc.view.cvm.EmpresasListadas;
+import br.unioeste.foz.cc.tcc.view.cvm.ProcurarEmpresa;
 
 public class BarraFerramentasActionManager {
 

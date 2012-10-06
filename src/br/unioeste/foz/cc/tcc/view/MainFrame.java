@@ -13,6 +13,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 
+import br.unioeste.foz.cc.tcc.view.abas.AbasDemonstracoes;
+import br.unioeste.foz.cc.tcc.view.arvore.ArvoreEmpresas;
+import br.unioeste.foz.cc.tcc.view.ferramentas.BarraFerramentas;
+import br.unioeste.foz.cc.tcc.view.menu.BarraMenu;
+
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame implements ActionListener {
 	JDesktopPane desktop;

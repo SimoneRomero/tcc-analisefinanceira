@@ -4,9 +4,9 @@ import java.sql.Date;
 import java.util.Calendar;
 
 import br.unioeste.foz.cc.tcc.analise.indicadores.IIndicador;
-import br.unioeste.foz.cc.tcc.aquisicaocvm.HashBackMap;
 import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
+import br.unioeste.foz.cc.tcc.web.cvm.HashBackMap;
 
 public class PMPC implements IIndicador {
 
