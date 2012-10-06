@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.aquisicaoweb;
+package br.unioeste.foz.cc.tcc.web;
 
 import com.gargoylesoftware.htmlunit.IncorrectnessListener;
 

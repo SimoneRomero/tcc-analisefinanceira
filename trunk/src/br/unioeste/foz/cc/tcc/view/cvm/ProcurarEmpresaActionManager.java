@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.view;
+package br.unioeste.foz.cc.tcc.view.cvm;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

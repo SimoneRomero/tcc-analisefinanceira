@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
-import br.unioeste.foz.cc.tcc.aquisicaocvm.ExtracaoCVMWeb;
-import br.unioeste.foz.cc.tcc.aquisicaocvm.ParserCVMWeb;
-import br.unioeste.foz.cc.tcc.aquisicaoweb.ClienteWeb;
 import br.unioeste.foz.cc.tcc.dao.EmpresaDAO;
 import br.unioeste.foz.cc.tcc.dao.EmpresaListadaDAO;
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
+import br.unioeste.foz.cc.tcc.web.ClienteWeb;
+import br.unioeste.foz.cc.tcc.web.cvm.ExtracaoCVMWeb;
+import br.unioeste.foz.cc.tcc.web.cvm.ParserCVMWeb;
 
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 

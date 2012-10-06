@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.aquisicaoweb;
+package br.unioeste.foz.cc.tcc.web;
 
 import org.w3c.css.sac.CSSException;
 import org.w3c.css.sac.CSSParseException;

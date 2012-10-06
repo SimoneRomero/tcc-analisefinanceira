@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.view;
+package br.unioeste.foz.cc.tcc.view.arvore;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +22,7 @@ import javax.swing.tree.TreePath;
 import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
 import br.unioeste.foz.cc.tcc.uc.UCManterEmpresa;
+import br.unioeste.foz.cc.tcc.view.abas.AbasDemonstracoes;
 
 @SuppressWarnings("serial")
 public class ArvoreEmpresas extends JTree implements MouseListener,

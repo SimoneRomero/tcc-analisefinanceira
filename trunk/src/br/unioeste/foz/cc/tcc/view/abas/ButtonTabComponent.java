@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.view;
+package br.unioeste.foz.cc.tcc.view.abas;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

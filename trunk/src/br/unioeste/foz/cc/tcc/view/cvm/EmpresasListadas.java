@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.view;
+package br.unioeste.foz.cc.tcc.view.cvm;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -17,6 +17,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import br.unioeste.foz.cc.tcc.view.arvore.ArvoreEmpresas;
 
 @SuppressWarnings("serial")
 public class EmpresasListadas extends JFrame implements ActionListener {
