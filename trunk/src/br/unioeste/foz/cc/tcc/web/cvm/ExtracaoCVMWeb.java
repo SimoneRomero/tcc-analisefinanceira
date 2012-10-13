@@ -71,13 +71,30 @@ public class ExtracaoCVMWeb implements IObterEmpresaWeb {
 
 			int numeroDocumento = parserCVMWeb.obterNumeroDocumento(link);
 
-			for (RelatorioAnual r : parserCVMWeb.obterRelatorios(
-					clienteWeb.obterPagina(urlDemonstracoes + 2
-							+ urlNumeroDocumento + numeroDocumento),
-					clienteWeb.obterPagina(urlDemonstracoes + 3
-							+ urlNumeroDocumento + numeroDocumento),
-					clienteWeb.obterPagina(urlDemonstracoes + 4
-							+ urlNumeroDocumento + numeroDocumento))) {
+			List<RelatorioAnual> relatoriosWeb;
+			try {
+				relatoriosWeb = parserCVMWeb.obterRelatorios(
+						clienteWeb.obterPagina(urlDemonstracoes + 2
+								+ urlNumeroDocumento + numeroDocumento),
+						clienteWeb.obterPagina(urlDemonstracoes + 3
+								+ urlNumeroDocumento + numeroDocumento),
+						clienteWeb.obterPagina(urlDemonstracoes + 4
+								+ urlNumeroDocumento + numeroDocumento));
+			} catch (IndexOutOfBoundsException exc) {
+
+				String urlDemonstracoes = "http://www.rad.cvm.gov.br/enetconsulta/"
+						+ "frmDemonstracaoFinanceiraITR.aspx?Informacao=1&Demonstracao=";
+
+				relatoriosWeb = parserCVMWeb.obterRelatorios(
+						clienteWeb.obterPagina(urlDemonstracoes + 2
+								+ urlNumeroDocumento + numeroDocumento),
+						clienteWeb.obterPagina(urlDemonstracoes + 3
+								+ urlNumeroDocumento + numeroDocumento),
+						clienteWeb.obterPagina(urlDemonstracoes + 4
+								+ urlNumeroDocumento + numeroDocumento));
+			}
+
+			for (RelatorioAnual r : relatoriosWeb) {
 
 				ArrayList<Date> datas = new ArrayList<Date>();
 				for (RelatorioAnual relat : relatorios)

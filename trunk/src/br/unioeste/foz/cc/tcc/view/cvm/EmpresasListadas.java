@@ -2,8 +2,6 @@ package br.unioeste.foz.cc.tcc.view.cvm;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,19 +16,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import br.unioeste.foz.cc.tcc.controller.ListaEmpresasFrameActionManager;
 import br.unioeste.foz.cc.tcc.view.arvore.ArvoreEmpresas;
+import br.unioeste.foz.cc.tcc.view.base.ListaEmpresasFrame;
 
 @SuppressWarnings("serial")
-public class EmpresasListadas extends JFrame implements ActionListener {
-
-	private JPanel contentPane;
-	private JTable tableResults;
-	private ProcurarEmpresaActionManager actionManager = new ProcurarEmpresaActionManager();
-	private JButton btnCarregar;
-	private JButton btnFechar;
-	private JScrollPane scrollResults;
-	private DefaultTableModel tbModel;
-	private ArvoreEmpresas arvoreEmpresas;
+public class EmpresasListadas extends ListaEmpresasFrame {
 
 	/**
 	 * Create the frame.
@@ -44,6 +35,7 @@ public class EmpresasListadas extends JFrame implements ActionListener {
 			throws FileNotFoundException, ClassNotFoundException, SQLException,
 			IOException {
 		this.arvoreEmpresas = arvoreEmpresas;
+		actionManager = new ListaEmpresasFrameActionManager(this);
 		setTitle("Empresa Listadas");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 432, 367);
@@ -76,31 +68,15 @@ public class EmpresasListadas extends JFrame implements ActionListener {
 		contentPane.add(panelCarregar, BorderLayout.SOUTH);
 
 		btnCarregar = new JButton("Carregar");
-		btnCarregar.addActionListener(this);
+		btnCarregar.addActionListener(actionManager);
 		panelCarregar.setLayout(new GridLayout(0, 2, 20, 0));
 		panelCarregar.add(btnCarregar);
 		btnCarregar.setActionCommand("carregar");
 
 		btnFechar = new JButton("Fechar");
 		panelCarregar.add(btnFechar);
-		btnFechar.addActionListener(this);
+		btnFechar.addActionListener(actionManager);
 		btnFechar.setActionCommand("fechar");
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		try {
-			if (e.getActionCommand().equals("carregar")) {
-				arvoreEmpresas.addEmpresa(actionManager
-						.carregarEmpresas(tableResults));
-				arvoreEmpresas.expandirTodos();
-			} else if (e.getActionCommand().equals("fechar")) {
-				dispose();
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
 
 	}
 

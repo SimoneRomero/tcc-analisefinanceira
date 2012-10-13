@@ -1,38 +1,37 @@
-package br.unioeste.foz.cc.tcc.view.ferramentas;
+package br.unioeste.foz.cc.tcc.view.barraferramentas;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import br.unioeste.foz.cc.tcc.controller.BarraFerramentasActionManager;
 import br.unioeste.foz.cc.tcc.view.arvore.ArvoreEmpresas;
 
 @SuppressWarnings("serial")
-public class BarraFerramentas extends JToolBar implements ActionListener {
+public class BarraFerramentas extends JToolBar{
 
 	private ArvoreEmpresas arvoreEmpresas;
 	private BarraFerramentasActionManager actionManager;
 
 	public BarraFerramentas(ArvoreEmpresas arvoreEmpresas) {
 		super();
-		this.arvoreEmpresas = arvoreEmpresas;
-		this.actionManager = new BarraFerramentasActionManager();
+		this.setArvoreEmpresas(arvoreEmpresas);
+		this.actionManager = new BarraFerramentasActionManager(this);
 		createMenuBar();
 	}
 
 	private void createMenuBar() {
 		JButton btnProcurarEmpresa = new JButton("Procurar Empresa");
 		btnProcurarEmpresa.setActionCommand("procurar");
-		btnProcurarEmpresa.addActionListener(this);
+		btnProcurarEmpresa.addActionListener(actionManager);
 		add(btnProcurarEmpresa);
 
 		JButton btnListaDeEmpresas = new JButton("Empresas Listadas");
 		btnListaDeEmpresas.setActionCommand("listar");
-		btnListaDeEmpresas.addActionListener(this);
+		btnListaDeEmpresas.addActionListener(actionManager);
 		add(btnListaDeEmpresas);
 
 		addSeparator();
@@ -43,12 +42,12 @@ public class BarraFerramentas extends JToolBar implements ActionListener {
 		addSeparator();
 
 		JButton btnImportar = new JButton("Importar");
-		btnImportar.addActionListener(this);
+		btnImportar.addActionListener(actionManager);
 		btnImportar.setActionCommand("importar");
 		add(btnImportar);
 
 		JButton btnExportar = new JButton("Exportar");
-		btnExportar.addActionListener(this);
+		btnExportar.addActionListener(actionManager);
 		btnExportar.setActionCommand("exportar");
 		add(btnExportar);
 		btnExportar.setIcon(null);
@@ -61,28 +60,24 @@ public class BarraFerramentas extends JToolBar implements ActionListener {
 		addSeparator();
 
 		JButton btnAjuda = new JButton("Ajuda");
-		btnAjuda.addActionListener(this);
+		btnAjuda.addActionListener(actionManager);
 		btnAjuda.setActionCommand("ajuda");
 		add(btnAjuda);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		try {
-			if (e.getActionCommand().equals("procurar")) {
-				actionManager.procurar(arvoreEmpresas);
-			} else if (e.getActionCommand().equals("listar")) {
-				actionManager.listar(arvoreEmpresas);
-			} else if (e.getActionCommand().equals("importar")) {
-
-			} else if (e.getActionCommand().equals("exportar")) {
-
-			} else if (e.getActionCommand().equals("ajuda")) {
-
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
+	/**
+	 * @return the arvoreEmpresas
+	 */
+	public ArvoreEmpresas getArvoreEmpresas() {
+		return arvoreEmpresas;
 	}
+
+	/**
+	 * @param arvoreEmpresas the arvoreEmpresas to set
+	 */
+	public void setArvoreEmpresas(ArvoreEmpresas arvoreEmpresas) {
+		this.arvoreEmpresas = arvoreEmpresas;
+	}
+
+	
 }

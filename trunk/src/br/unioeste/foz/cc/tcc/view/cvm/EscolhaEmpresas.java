@@ -2,16 +2,18 @@ package br.unioeste.foz.cc.tcc.view.cvm;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import br.unioeste.foz.cc.tcc.controller.ListaEmpresasFrameActionManager;
@@ -19,26 +21,33 @@ import br.unioeste.foz.cc.tcc.view.arvore.ArvoreEmpresas;
 import br.unioeste.foz.cc.tcc.view.base.ListaEmpresasFrame;
 
 @SuppressWarnings("serial")
-public class ProcurarEmpresa extends ListaEmpresasFrame {
+public class EscolhaEmpresas extends ListaEmpresasFrame {
 
 	/**
 	 * Create the frame.
 	 * 
-	 * @param arvoreEmpresas
+	 * @throws IOException
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
 	 */
-	public ProcurarEmpresa(ArvoreEmpresas arvoreEmpresas) {
+	public EscolhaEmpresas(ArvoreEmpresas arvoreEmpresas, String option)
+			throws FileNotFoundException, ClassNotFoundException, SQLException,
+			IOException {
 		this.arvoreEmpresas = arvoreEmpresas;
 		actionManager = new ListaEmpresasFrameActionManager(this);
-		setTitle("Procurar Empresa");
+		setTitle("Empresa Listadas");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 687, 463);
+		setBounds(100, 100, 432, 367);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
 
 		tbModel = new DefaultTableModel(new Object[][] {}, new String[] {
 				"Nome", "Cod. CVM" });
+		tbModel.setRowCount(0);
+		actionManager.buscarEmpresasArvore(arvoreEmpresas.getModel().getRoot(), tbModel);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		tableResults = new JTable() {
 			public boolean isCellEditable(int rowIndex, int colIndex) {
 				return false; // Disallow the editing of any cell
@@ -47,47 +56,27 @@ public class ProcurarEmpresa extends ListaEmpresasFrame {
 		tableResults
 				.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		tableResults.setModel(tbModel);
-
 		scrollResults = new JScrollPane();
 		scrollResults.setViewportView(tableResults);
 		tableResults.setAutoCreateRowSorter(true);
 		contentPane.add(scrollResults, BorderLayout.CENTER);
 		contentPane.add(tableResults.getTableHeader(), BorderLayout.PAGE_START);
 
-		JPanel panelOptions = new JPanel();
-		contentPane.add(panelOptions, BorderLayout.SOUTH);
+		JPanel panelCarregar = new JPanel();
+		panelCarregar.setBorder(new TitledBorder(null, "",
+				TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		contentPane.add(panelCarregar, BorderLayout.SOUTH);
 
-		btnBuscar = new JButton("Buscar");
-		btnBuscar.setActionCommand("buscar");
-		btnBuscar.addActionListener(actionManager);
-		panelOptions.setLayout(new GridLayout(0, 4, 20, 0));
-		panelOptions.add(btnBuscar);
-
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setActionCommand("cancelar");
-		btnCancelar.addActionListener(actionManager);
-		panelOptions.add(btnCancelar);
-
-		btnCarregar = new JButton("Carregar");
-		btnCarregar.setActionCommand("carregar");
+		btnCarregar = new JButton("Ir");
 		btnCarregar.addActionListener(actionManager);
-		panelOptions.add(btnCarregar);
+		panelCarregar.setLayout(new GridLayout(0, 2, 20, 0));
+		panelCarregar.add(btnCarregar);
+		btnCarregar.setActionCommand(option);
 
 		btnFechar = new JButton("Fechar");
-		btnFechar.setActionCommand("fechar");
+		panelCarregar.add(btnFechar);
 		btnFechar.addActionListener(actionManager);
-		panelOptions.add(btnFechar);
-
-		JPanel panelInput = new JPanel();
-		contentPane.add(panelInput, BorderLayout.NORTH);
-		panelInput.setLayout(new BorderLayout(20, 0));
-
-		JLabel lblBuscarPor = new JLabel("Buscar por:");
-		panelInput.add(lblBuscarPor, BorderLayout.WEST);
-
-		tfBuscarPor = new JTextField();
-		panelInput.add(tfBuscarPor);
-		tfBuscarPor.setColumns(10);
+		btnFechar.setActionCommand("fechar");
 
 	}
 

@@ -28,7 +28,7 @@ public class EmpresaDAO {
 	}
 
 	public int inserir(Empresa empresa) throws SQLException,
-			FileNotFoundException, ClassNotFoundException, IOException {
+			FileNotFoundException, IOException, ClassNotFoundException {
 
 		try {
 			return existe(empresa);
@@ -203,7 +203,7 @@ public class EmpresaDAO {
 	public List<Empresa> obterTodosPorNome(String nome) throws SQLException,
 			FileNotFoundException, ClassNotFoundException, IOException {
 		ArrayList<Empresa> empresas = new ArrayList<Empresa>();
-
+		
 		ResultSet rs = queryMaker.selectWhere("empresa", "idempresa",
 				"nome LIKE ?", nome);
 		empresas.add(obter(rs.getInt(1), false));
