@@ -15,7 +15,7 @@ public class EmpresaListadaDAO {
 	private QueryMakerSingleton queryMaker;
 
 	public EmpresaListadaDAO() throws SQLException, FileNotFoundException,
-			ClassNotFoundException, IOException {
+			IOException, ClassNotFoundException {
 		queryMaker = QueryMakerSingleton.getInstance();
 	}
 

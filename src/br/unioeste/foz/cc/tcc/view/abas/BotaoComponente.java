@@ -26,10 +26,10 @@ import javax.swing.plaf.basic.BasicButtonUI;
  * a JButton to close the tab it belongs to
  */
 @SuppressWarnings("serial")
-public class ButtonTabComponent extends JPanel {
+public class BotaoComponente extends JPanel {
 	private final JTabbedPane pane;
 
-	public ButtonTabComponent(final JTabbedPane pane) {
+	public BotaoComponente(final JTabbedPane pane) {
 		// unset default FlowLayout' gaps
 		super(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		if (pane == null) {
@@ -41,7 +41,7 @@ public class ButtonTabComponent extends JPanel {
 		// make JLabel read titles from JTabbedPane
 		JLabel label = new JLabel() {
 			public String getText() {
-				int i = pane.indexOfTabComponent(ButtonTabComponent.this);
+				int i = pane.indexOfTabComponent(BotaoComponente.this);
 				if (i != -1) {
 					return pane.getTitleAt(i);
 				}
@@ -81,7 +81,7 @@ public class ButtonTabComponent extends JPanel {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			int i = pane.indexOfTabComponent(ButtonTabComponent.this);
+			int i = pane.indexOfTabComponent(BotaoComponente.this);
 			if (i != -1) {
 				pane.remove(i);
 			}

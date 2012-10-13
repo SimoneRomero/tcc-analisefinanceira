@@ -25,10 +25,8 @@
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/nekohtml-1.9.16.jar"/>
 	<classpathentry kind="lib" path="lib/xalan-2.7.1.jar"/>
-	<classpathentry kind="lib" path="lib/helpgui-1.1.jar" sourcepath="C:/Users/Jhonny Mertz/Downloads/helpgui-1.1-src.jar">
-		<attributes>
-			<attribute name="source_encoding" value="ISO-8859-1"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="lib/helpgui.jar"/>
+	<classpathentry kind="lib" path="lib/jcommon-1.0.17.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart-1.0.14.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

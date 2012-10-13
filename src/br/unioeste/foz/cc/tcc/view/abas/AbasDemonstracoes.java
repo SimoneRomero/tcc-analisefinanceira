@@ -2,26 +2,43 @@ package br.unioeste.foz.cc.tcc.view.abas;
 
 import java.awt.BorderLayout;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.table.JTableHeader;
 
+import br.unioeste.foz.cc.tcc.controller.AbasDemonstracoesActionManager;
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
 
 @SuppressWarnings("serial")
-public class AbasDemonstracoes extends JTabbedPane {
+public class AbasDemonstracoes extends JTabbedPane{
 
 	private TabelaEmpresa tabelaEmpresa;
+	private AbasDemonstracoesActionManager actionManager;
+	private JPopupMenu popup;
 
 	public AbasDemonstracoes() {
 		super(JTabbedPane.TOP);
+		actionManager = new AbasDemonstracoesActionManager(this);
+		addMouseListener(actionManager);
+		
+		popup = new JPopupMenu();
+		popup.setOpaque(true);
+		popup.setLightWeightPopupEnabled(true);
+
+		JMenuItem mf;
+		mf = new JMenuItem("Fechar");
+		mf.addActionListener(actionManager);
+		mf.setActionCommand("fechar");
+		popup.add(mf);
 	}
 
 	public void addAba(String atributos, int ano, Empresa empresa) {
 		addTab(empresa.getNome() + " - " + ano + " - " + atributos, null,
 				createTable(empresa, ano, atributos), null);
-		setTabComponentAt(getTabCount() - 1, new ButtonTabComponent(this));
+		setTabComponentAt(getTabCount() - 1, new BotaoComponente(this));
 	}
 
 	private JPanel createTable(Empresa empresa, int ano, String atributos) {
@@ -43,4 +60,11 @@ public class AbasDemonstracoes extends JTabbedPane {
 		return jp;
 	}
 
+	public JPopupMenu getPopup() {
+		return popup;
+	}
+
+	public void setPopup(JPopupMenu popup) {
+		this.popup = popup;
+	}
 }

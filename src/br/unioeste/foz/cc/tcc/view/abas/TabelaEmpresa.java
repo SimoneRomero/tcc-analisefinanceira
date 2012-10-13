@@ -38,10 +38,16 @@ public class TabelaEmpresa extends JTable {
 		RelatorioAnual raAno2 = empresa.getRelatorio(ano - 2);
 
 		for (AtributoValor av : raAno.getAtributos(atributos)) {
+			String raAno2valor;
+			try {
+				raAno2valor = raAno2.getValor(av.getAtributo().getCodigo());
+			} catch (NullPointerException exc) {
+				raAno2valor = "";
+			}
+
 			Object[] row = { av.getAtributo().getCodigo(),
 					av.getAtributo().getDescricao(), av.getValor(),
-					raAno1.getValor(av.getAtributo().getCodigo()),
-					raAno2.getValor(av.getAtributo().getCodigo()) };
+					raAno1.getValor(av.getAtributo().getCodigo()), raAno2valor };
 			data.addRow(row);
 		}
 

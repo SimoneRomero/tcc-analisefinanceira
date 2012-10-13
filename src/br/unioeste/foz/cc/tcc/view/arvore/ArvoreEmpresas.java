@@ -1,16 +1,8 @@
 package br.unioeste.foz.cc.tcc.view.arvore;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTree;
@@ -19,38 +11,43 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
+import br.unioeste.foz.cc.tcc.controller.ArvoreEmpresasActionManager;
 import br.unioeste.foz.cc.tcc.model.demonstracao.RelatorioAnual;
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
-import br.unioeste.foz.cc.tcc.uc.UCManterEmpresa;
 import br.unioeste.foz.cc.tcc.view.abas.AbasDemonstracoes;
 
 @SuppressWarnings("serial")
-public class ArvoreEmpresas extends JTree implements MouseListener,
-		ActionListener {
+public class ArvoreEmpresas extends JTree {
 
+	private ArvoreEmpresasActionManager actionManager;
 	private JPopupMenu popup;
-	private JMenuItem mi;
-	protected DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(
-			"Empresas");
-
-	protected DefaultTreeModel model = new DefaultTreeModel(raiz);
-
-	protected AbasDemonstracoes abas;
+	private DefaultTreeModel model;
+	private AbasDemonstracoes abas;
 
 	public ArvoreEmpresas(AbasDemonstracoes abas) {
 		super();
+		model = new DefaultTreeModel(new DefaultMutableTreeNode(
+				"Empresas"));
+		actionManager = new ArvoreEmpresasActionManager(this);
 		setModel(model);
 		this.abas = abas;
-		addMouseListener(this);
+		addMouseListener(actionManager);
 
 		popup = new JPopupMenu();
-		mi = new JMenuItem("Remover");
-		mi.addActionListener(this);
-		mi.setActionCommand("remover");
-		popup.add(mi);
 		popup.setOpaque(true);
 		popup.setLightWeightPopupEnabled(true);
 
+		JMenuItem mr;
+		mr = new JMenuItem("Remover");
+		mr.addActionListener(actionManager);
+		mr.setActionCommand("remover");
+		popup.add(mr);
+
+		JMenuItem mo;
+		mo = new JMenuItem("Ordenar");
+		mo.addActionListener(actionManager);
+		mo.setActionCommand("ordenar");
+		popup.add(mo);
 	}
 
 	public void addEmpresa(List<Empresa> empresas) {
@@ -91,7 +88,7 @@ public class ArvoreEmpresas extends JTree implements MouseListener,
 	}
 
 	public void removeEmpresa(Empresa empresa) {
-		raiz.remove(new DefaultMutableTreeNode(empresa.getNome()));
+		((DefaultMutableTreeNode) model.getRoot()).remove(new DefaultMutableTreeNode(empresa.getNome()));
 	}
 
 	public void expandirTodos() {
@@ -101,73 +98,17 @@ public class ArvoreEmpresas extends JTree implements MouseListener,
 	}
 
 	public void recolherTodos() {
-		for (int i = 0; i < getRowCount(); i++) {
-			collapseRow(i);
-		}
+		DefaultMutableTreeNode currentNode = ((DefaultMutableTreeNode) model.getRoot()).getNextNode();
+		do {
+			if (currentNode.getLevel() == 1)
+				collapsePath(new TreePath(currentNode.getPath()));
+			currentNode = currentNode.getNextNode();
+		} while (currentNode != null);
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		int selRow = getRowForLocation(e.getX(), e.getY());
-		TreePath selPath = getPathForLocation(e.getX(), e.getY());
-		if (selRow != -1) {
-			if (e.getClickCount() == 1) {
-				// mySingleClick(selRow, selPath);
-			} else if (e.getClickCount() == 2) {
-				if (getModel().isLeaf(selPath.getLastPathComponent())) {
-					UCManterEmpresa ucM = new UCManterEmpresa();
-					try {
-						this.abas.addAba(selPath.getLastPathComponent()
-								.toString(), Integer.valueOf(selPath
-								.getPathComponent(2).toString()), ucM
-								.obterEmpresa(selPath.getPathComponent(1)
-										.toString()));
-					} catch (NumberFormatException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-			}
-		}
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		if (e.isPopupTrigger()) {
-			popup.show((JComponent) e.getSource(), e.getX(), e.getY());
-		}
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
+	public void sortTree() {
+		model = new DefaultTreeModel(sortTree(((DefaultMutableTreeNode) model.getRoot())));
+		((DefaultTreeModel) getModel()).nodeStructureChanged((TreeNode) ((DefaultMutableTreeNode) model.getRoot()));
 	}
 
 	/**
@@ -175,7 +116,7 @@ public class ArvoreEmpresas extends JTree implements MouseListener,
 	 *            of tree
 	 * @return sorted elements alphabetically
 	 */
-	public static DefaultMutableTreeNode sortTree(DefaultMutableTreeNode root) {
+	private DefaultMutableTreeNode sortTree(DefaultMutableTreeNode root) {
 		for (int i = 0; i < root.getChildCount(); i++) {
 			DefaultMutableTreeNode node = (DefaultMutableTreeNode) root
 					.getChildAt(i);
@@ -196,23 +137,19 @@ public class ArvoreEmpresas extends JTree implements MouseListener,
 		return root;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		DefaultMutableTreeNode dmtn, node;
-
-		TreePath path = this.getSelectionPath();
-		dmtn = (DefaultMutableTreeNode) path.getLastPathComponent();
-		if (e.getActionCommand().equals("remover")) {
-			node = (DefaultMutableTreeNode) dmtn.getParent();
-			int nodeIndex = node.getIndex(dmtn); // declare an integer to hold
-													// the selected nodes index
-			dmtn.removeAllChildren(); // remove any children of selected node
-			node.remove(nodeIndex); // remove the selected node, retain its
-									// siblings
-			((DefaultTreeModel) this.getModel())
-					.nodeStructureChanged((TreeNode) dmtn);
-		}
-
+	public JPopupMenu getPopup() {
+		return popup;
 	}
 
+	public void setPopup(JPopupMenu popup) {
+		this.popup = popup;
+	}
+
+	public AbasDemonstracoes getAbas() {
+		return abas;
+	}
+
+	public void setAbas(AbasDemonstracoes abas) {
+		this.abas = abas;
+	}
 }

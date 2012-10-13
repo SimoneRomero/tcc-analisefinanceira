@@ -1,4 +1,4 @@
-package br.unioeste.foz.cc.tcc.view;
+package br.unioeste.foz.cc.tcc.view.base;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -15,8 +15,10 @@ import javax.swing.JTree;
 
 import br.unioeste.foz.cc.tcc.view.abas.AbasDemonstracoes;
 import br.unioeste.foz.cc.tcc.view.arvore.ArvoreEmpresas;
-import br.unioeste.foz.cc.tcc.view.ferramentas.BarraFerramentas;
+import br.unioeste.foz.cc.tcc.view.barraferramentas.BarraFerramentas;
 import br.unioeste.foz.cc.tcc.view.menu.BarraMenu;
+import br.unioeste.foz.cc.tcc.view.util.BarraProgresso;
+import br.unioeste.foz.cc.tcc.view.util.MonitorBarraProgresso;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame implements ActionListener {
@@ -24,6 +26,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	private ArvoreEmpresas arvoreEmpresas;
 	private BarraFerramentas barraFerramentas;
 	private AbasDemonstracoes abasDemonstracoes;
+	private MonitorBarraProgresso monitorProgressBar;
 
 	public MainFrame() {
 		super("Sistema de ADF");
@@ -39,11 +42,17 @@ public class MainFrame extends JFrame implements ActionListener {
 		// createFrame(); // create first "window"
 		setContentPane(desktop);
 		desktop.setLayout(new BorderLayout(0, 0));
+		
+		BarraProgresso progressBar = new BarraProgresso();
+		desktop.add(progressBar, BorderLayout.SOUTH);
+		monitorProgressBar = new MonitorBarraProgresso(progressBar);
 
 		JSplitPane splitPane = new JSplitPane();
+		desktop.setLayer(splitPane, 0);
 		desktop.add(splitPane);
 
 		splitPane.setRightComponent(createTabs());
+		splitPane.setOneTouchExpandable(true);
 
 		JScrollPane j2 = new JScrollPane();
 		j2.setViewportView(createTree());
@@ -54,7 +63,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
 
 		desktop.add(createToolBar(), BorderLayout.NORTH);
-
+		
 	}
 
 	protected JTabbedPane createTabs() {
@@ -72,7 +81,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	protected JMenuBar createMenuBar() {
 
-		return new BarraMenu(arvoreEmpresas);
+		return new BarraMenu(arvoreEmpresas, monitorProgressBar);
 	}
 
 	protected JTree createTree() {
@@ -84,7 +93,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 	private static void createAndShowGUI() {
 		// Make sure we have nice window decorations.
-//		JFrame.setDefaultLookAndFeelDecorated(true);
+		// JFrame.setDefaultLookAndFeelDecorated(true);
 
 		// Create and set up the window.
 		MainFrame frame = new MainFrame();

@@ -48,12 +48,12 @@ public class QueryMakerSingleton {
 
 	}
 
-	private QueryMakerSingleton() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
+	private QueryMakerSingleton() throws SQLException, FileNotFoundException, IOException, ClassNotFoundException {
 		conn = ConexaoSingleton.getInstance();
 
 	}
 
-	public static QueryMakerSingleton getInstance() throws SQLException, FileNotFoundException, ClassNotFoundException, IOException {
+	public static QueryMakerSingleton getInstance() throws SQLException, FileNotFoundException, IOException, ClassNotFoundException {
 		if (qm == null) {
 			qm = new QueryMakerSingleton();
 		}
