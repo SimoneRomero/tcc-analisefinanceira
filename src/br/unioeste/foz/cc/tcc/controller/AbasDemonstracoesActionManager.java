@@ -76,6 +76,9 @@ public class AbasDemonstracoesActionManager implements MouseListener,
 			if (i != -1) {
 				abasDemonstracoes.remove(i);
 			}
+		}else if(e.getActionCommand().equals("fechar todos")){
+			for(int i = 0; i < abasDemonstracoes.getTabCount(); i++)
+				abasDemonstracoes.remove(i);
 		}
 	}
 
