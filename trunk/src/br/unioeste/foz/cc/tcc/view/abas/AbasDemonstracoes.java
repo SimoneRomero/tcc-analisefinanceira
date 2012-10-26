@@ -32,7 +32,15 @@ public class AbasDemonstracoes extends JTabbedPane{
 		mf = new JMenuItem("Fechar");
 		mf.addActionListener(actionManager);
 		mf.setActionCommand("fechar");
+
+
+		JMenuItem mft;
+		mft = new JMenuItem("Fechar Todos");
+		mft.addActionListener(actionManager);
+		mft.setActionCommand("fechar todos");		
+		
 		popup.add(mf);
+		popup.add(mft);
 	}
 
 	public void addAba(String atributos, int ano, Empresa empresa) {
