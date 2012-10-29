@@ -6,9 +6,9 @@ import br.unioeste.foz.cc.tcc.analise.indicadores.IndicadorFactory;
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
 import br.unioeste.foz.cc.tcc.web.cvm.HashBackMap;
 
-public class UCAnalisar {
+public class UCAnalisarDemonstrativos {
 
-	public UCAnalisar() {
+	public UCAnalisarDemonstrativos() {
 	}
 
 	public HashBackMap<Date, Double> calcular(String nomeIndicador,
