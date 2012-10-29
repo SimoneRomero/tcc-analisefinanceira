@@ -25,7 +25,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.RefineryUtilities;
 
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
-import br.unioeste.foz.cc.tcc.uc.UCAnalisar;
+import br.unioeste.foz.cc.tcc.uc.UCAnalisarDemonstrativos;
 import br.unioeste.foz.cc.tcc.uc.UCManterEmpresa;
 import br.unioeste.foz.cc.tcc.web.cvm.HashBackMap;
 
@@ -118,7 +118,7 @@ public class GraficoBarras extends JFrame {
 	public static void main(String[] args) throws FileNotFoundException,
 			ClassNotFoundException, SQLException, IOException {
 		UCManterEmpresa m = new UCManterEmpresa();
-		UCAnalisar a = new UCAnalisar();
+		UCAnalisarDemonstrativos a = new UCAnalisarDemonstrativos();
 
 		// System.out.println(Double.valueOf("26.122.310".replace(".",
 		// "").replace(",", ".")));

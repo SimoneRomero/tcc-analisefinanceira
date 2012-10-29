@@ -21,7 +21,7 @@ import org.jfree.ui.RefineryUtilities;
 import org.xml.sax.SAXException;
 
 import br.unioeste.foz.cc.tcc.model.empresa.Empresa;
-import br.unioeste.foz.cc.tcc.uc.UCAnalisar;
+import br.unioeste.foz.cc.tcc.uc.UCAnalisarDemonstrativos;
 import br.unioeste.foz.cc.tcc.uc.UCExportar;
 import br.unioeste.foz.cc.tcc.uc.UCManterEmpresa;
 import br.unioeste.foz.cc.tcc.uc.UCObterInfosCVM;
@@ -170,7 +170,7 @@ public class ListaEmpresasFrameActionManager implements ActionListener {
 		GraficoBarras gb = new GraficoBarras("Análise de " + indicador,
 				indicador, eixoX, eixoY);
 
-		UCAnalisar ucA = new UCAnalisar();
+		UCAnalisarDemonstrativos ucA = new UCAnalisarDemonstrativos();
 
 		for (Empresa e : empresas) {
 			gb.addEmpresa(e, ucA.calcular(indicador, e));
