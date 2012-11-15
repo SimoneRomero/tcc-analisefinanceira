@@ -16,8 +16,8 @@ public class PMRV extends IndicadorFactory {
 
 		for (RelatorioAnual ra : empresa.getRelatorios()) {
 
-			double pmrv = 360 * (ra.getValorByCodigo("1.01.02") / ra
-					.getValorByCodigo("3.03"));
+			double pmrv = 360 * (ra.getValorByCodigo("1.01.03") / ra
+					.getValorByCodigo("3.01"));
 
 			indicadores.put(ra.getFinalPeriodo(), pmrv);
 		}
